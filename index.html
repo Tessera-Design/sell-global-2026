@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SELL GLOBAL | Mosaic Venture Lab</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --bg: #FAF9F6;
+  --bg-warm: #F3F0EB;
+  --bg-dark: #1A1A2E;
+  --bg-card: #FFFFFF;
+  --text: #1A1A2E;
+  --text-sec: #57534E;
+  --text-muted: #A8A29E;
+  --red: #DC2626;
+  --red-light: #FEF2F2;
+  --blue: #1E40AF;
+  --blue-light: #EFF6FF;
+  --teal: #0F766E;
+  --amber: #D97706;
+  --border: #E7E5E4;
+  --sh-sm: 0 1px 3px rgba(0,0,0,0.05);
+  --sh-md: 0 4px 20px rgba(0,0,0,0.06);
+  --sh-lg: 0 12px 40px rgba(0,0,0,0.08);
+}
+html { scroll-behavior: smooth; }
+body { font-family:'Instrument Sans',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+
+/* NAV */
+nav { position:fixed; top:0; left:0; right:0; z-index:1000; background:rgba(250,249,246,0.92); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid transparent; transition:all .3s; }
+nav.scrolled { border-bottom-color:var(--border); }
+.nav-inner { max-width:1340px; margin:0 auto; padding:0 2rem; display:flex; align-items:center; height:68px; }
+.nav-brand { font-family:'DM Serif Display',serif; font-size:1.15rem; font-weight:400; color:var(--text); text-decoration:none; margin-right:3rem; letter-spacing:-0.01em; }
+.nav-brand em { color:var(--red); font-style:italic; }
+.nav-tabs { display:flex; gap:0; flex:1; height:100%; }
+.nav-tab { display:flex; align-items:center; padding:0 1.1rem; font-size:0.8rem; font-weight:500; letter-spacing:0.03em; color:var(--text-sec); text-decoration:none; height:100%; position:relative; transition:color .2s; cursor:pointer; border:none; background:none; font-family:inherit; text-transform:uppercase; }
+.nav-tab:hover { color:var(--text); }
+.nav-tab.active { color:var(--red); }
+.nav-tab.active::after { content:''; position:absolute; bottom:0; left:1.1rem; right:1.1rem; height:2px; background:var(--red); }
+
+/* LAYOUT */
+.section { max-width:1140px; margin:0 auto; padding:6rem 2rem; }
+.section-sm { max-width:1140px; margin:0 auto; padding:4rem 2rem; }
+.full-bleed { background:var(--bg-warm); }
+.full-dark { background:var(--bg-dark); color:white; }
+
+/* TYPOGRAPHY */
+.hero-tag { font-family:'IBM Plex Mono',monospace; font-size:0.72rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--red); margin-bottom:1.5rem; }
+.hero-title { font-family:'DM Serif Display',serif; font-size:clamp(3rem,7vw,5.5rem); line-height:1.05; letter-spacing:-0.02em; margin-bottom:1.5rem; }
+.hero-title em { font-style:italic; color:var(--red); }
+.hero-sub { font-size:1.15rem; line-height:1.7; color:var(--text-sec); max-width:600px; }
+.section-label { font-family:'IBM Plex Mono',monospace; font-size:0.68rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--red); margin-bottom:1rem; }
+.section-heading { font-family:'DM Serif Display',serif; font-size:clamp(2rem,4vw,3rem); line-height:1.15; letter-spacing:-0.01em; margin-bottom:1.5rem; }
+.section-sub { font-size:1.05rem; line-height:1.7; color:var(--text-sec); max-width:640px; }
+
+/* CARDS */
+.card { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:2rem; transition:box-shadow .3s, transform .3s; }
+.card:hover { box-shadow:var(--sh-md); transform:translateY(-2px); }
+.card-dark { background:var(--bg-dark); border:1px solid rgba(255,255,255,0.08); color:white; border-radius:14px; padding:2rem; }
+.card-red { background:var(--red); color:white; border-radius:14px; padding:2rem; }
+
+/* COUNTERS */
+.counters { display:flex; gap:3rem; margin-top:2.5rem; }
+.counter h3 { font-family:'DM Serif Display',serif; font-size:2.5rem; letter-spacing:-0.02em; }
+.counter p { font-size:0.78rem; font-weight:500; color:var(--text-sec); text-transform:uppercase; letter-spacing:0.06em; margin-top:0.2rem; }
+
+/* GRID */
+.g2 { display:grid; grid-template-columns:repeat(2,1fr); gap:1.25rem; }
+.g3 { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
+.g4 { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; }
+
+/* PAGE SYSTEM */
+.page { display:none; }
+.page.active { display:block; }
+
+/* WEEK TIMELINE */
+.week-item { display:grid; grid-template-columns:80px 1fr; gap:2rem; padding:2rem 0; border-bottom:1px solid var(--border); }
+.week-item:last-child { border-bottom:none; }
+.week-num { font-family:'DM Serif Display',serif; font-size:2.5rem; color:var(--red); line-height:1; }
+.week-format { font-family:'IBM Plex Mono',monospace; font-size:0.68rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-muted); margin-top:0.3rem; }
+.week-title { font-family:'DM Serif Display',serif; font-size:1.5rem; margin-bottom:0.5rem; }
+.week-desc { font-size:0.92rem; line-height:1.7; color:var(--text-sec); }
+.week-who { font-family:'IBM Plex Mono',monospace; font-size:0.7rem; color:var(--teal); margin-top:0.75rem; font-weight:500; }
+
+/* TRACK CARDS */
+.track-card { border-radius:14px; padding:2.5rem; }
+.track-a { background:var(--bg-dark); color:white; }
+.track-b { background:var(--blue); color:white; }
+.track-tag { font-family:'IBM Plex Mono',monospace; font-size:0.68rem; font-weight:600; letter-spacing:0.1em; opacity:0.7; margin-bottom:0.75rem; }
+.track-title { font-family:'DM Serif Display',serif; font-size:1.6rem; margin-bottom:1rem; }
+.track-desc { font-size:0.9rem; line-height:1.7; opacity:0.85; }
+
+/* TIMELINE */
+.tl-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+.tl-item { border-left:3px solid var(--red); padding-left:1.25rem; }
+.tl-year { font-family:'IBM Plex Mono',monospace; font-size:0.68rem; font-weight:600; letter-spacing:0.08em; color:var(--red); margin-bottom:0.4rem; }
+.tl-title { font-size:0.92rem; font-weight:700; margin-bottom:0.3rem; }
+.tl-desc { font-size:0.82rem; color:var(--text-sec); line-height:1.6; }
+
+/* COMPARISON TABLE */
+.comp-table { width:100%; border-collapse:collapse; margin-top:2rem; }
+.comp-table th { font-family:'IBM Plex Mono',monospace; font-size:0.7rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:1rem; text-align:left; border-bottom:2px solid var(--text); }
+.comp-table td { padding:1rem; font-size:0.88rem; line-height:1.6; border-bottom:1px solid var(--border); vertical-align:top; }
+.comp-table td:first-child { font-weight:600; width:20%; }
+.comp-table .col-old { color:var(--text-muted); }
+.comp-table .col-new { color:var(--text); }
+
+/* PROMISE GRID */
+.promise-item { display:flex; gap:1rem; align-items:flex-start; }
+.promise-icon { width:40px; height:40px; border-radius:10px; background:var(--red-light); display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+.promise-text h4 { font-size:0.92rem; font-weight:700; margin-bottom:0.2rem; }
+.promise-text p { font-size:0.82rem; color:var(--text-sec); line-height:1.6; }
+
+/* QUOTE */
+.quote-card { background:var(--bg-warm); border-radius:14px; padding:2rem 2.5rem; position:relative; }
+.quote-card::before { content:'\201C'; font-family:'DM Serif Display',serif; font-size:4rem; color:var(--red); opacity:0.3; position:absolute; top:0.5rem; left:1.5rem; line-height:1; }
+.quote-text { font-size:1rem; line-height:1.7; color:var(--text); font-style:italic; padding-left:1rem; }
+.quote-attr { font-size:0.78rem; font-weight:600; color:var(--text-sec); margin-top:1rem; padding-left:1rem; }
+
+/* MENTOR GRID */
+.mentor-card { text-align:center; }
+.mentor-photo { width:100px; height:100px; border-radius:50%; background:var(--bg-warm); margin:0 auto 1rem; display:flex; align-items:center; justify-content:center; font-size:1.5rem; }
+.mentor-name { font-weight:700; font-size:0.88rem; }
+.mentor-role { font-size:0.75rem; color:var(--text-sec); line-height:1.5; margin-top:0.2rem; }
+
+/* CTA SECTION */
+.cta-section { background:var(--bg-dark); color:white; border-radius:20px; padding:4rem; text-align:center; }
+.cta-section h2 { font-family:'DM Serif Display',serif; font-size:clamp(1.8rem,3.5vw,2.8rem); margin-bottom:1rem; }
+.cta-section p { font-size:1rem; opacity:0.75; max-width:500px; margin:0 auto 2rem; line-height:1.7; }
+.cta-btn { display:inline-block; padding:1rem 2.5rem; background:var(--red); color:white; text-decoration:none; border-radius:8px; font-weight:600; font-size:0.9rem; letter-spacing:0.02em; transition:all .2s; }
+.cta-btn { cursor:pointer; }
+.cta-btn:hover { background:#B91C1C; transform:translateY(-1px); }
+
+/* REVEAL */
+.reveal { opacity:0; transform:translateY(30px); transition:opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* RESPONSIVE */
+@media(max-width:1100px) {
+  .g4 { grid-template-columns:repeat(2,1fr); }
+  .section,.section-sm { padding:4rem 1.5rem; }
+}
+@media(max-width:900px) {
+  .g2,.g3,.tl-grid { grid-template-columns:1fr; }
+  .g4 { grid-template-columns:repeat(2,1fr); }
+  .mentor-grid { grid-template-columns:repeat(3,1fr) !important; }
+  .week-item { grid-template-columns:60px 1fr; gap:1rem; }
+  .counters { flex-wrap:wrap; gap:1.5rem 2.5rem; }
+  .section,.section-sm { padding:3rem 1.25rem; }
+  .hero-title { font-size:clamp(2.2rem,8vw,3.5rem); }
+  .section-heading { font-size:clamp(1.6rem,5vw,2.4rem); }
+  .comp-table { font-size:0.8rem; }
+  .comp-table td, .comp-table th { padding:0.6rem 0.5rem; }
+  .cta-section { padding:2.5rem 1.5rem; }
+  .track-card { padding:1.5rem; }
+  .quote-card { padding:1.5rem; }
+}
+@media(max-width:600px) {
+  .g4 { grid-template-columns:1fr 1fr; gap:0.75rem; }
+  .nav-inner { padding:0 1rem; height:56px; }
+  .nav-brand { font-size:1rem; margin-right:0; }
+  .nav-brand img { height:24px !important; }
+  .hero-tag { font-size:0.65rem; }
+  .hero-tag img { height:24px !important; }
+  .hero-sub { font-size:1rem; }
+  .counter h3 { font-size:1.8rem; }
+  .counter p { font-size:0.68rem; }
+  .counters { gap:1rem 2rem; }
+  .section,.section-sm { padding:2.5rem 1rem; }
+  .card { padding:1.25rem; }
+  .card-dark { padding:1.25rem; }
+  .week-item { grid-template-columns:50px 1fr; gap:0.75rem; padding:1.25rem 0; }
+  .week-num { font-size:2rem; }
+  .week-title { font-size:1.2rem; }
+  .comp-table { display:block; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .mentor-card { margin-bottom:0.5rem; }
+  .mentor-photo { width:80px; height:80px; }
+  .mentor-grid { grid-template-columns:repeat(2,1fr) !important; gap:0.75rem !important; }
+  .logo-strip { gap:1rem 1.5rem; }
+  .cta-section { padding:2rem 1.25rem; border-radius:14px; }
+  .cta-section h2 { font-size:1.5rem; }
+  .event-overlay h4 { font-size:0.8rem; }
+  .event-overlay p { font-size:0.65rem; }
+  .event-overlay { padding:0.75rem 1rem; }
+}
+
+/* MOBILE NAV HAMBURGER */
+.nav-hamburger { display:none; background:none; border:none; cursor:pointer; padding:0.5rem; margin-left:auto; }
+.nav-hamburger span { display:block; width:22px; height:2px; background:var(--text); margin:5px 0; transition:all .3s; border-radius:1px; }
+@media(max-width:900px) {
+  .nav-hamburger { display:block; }
+  .nav-tabs { display:none !important; position:fixed; top:68px; left:0; right:0; height:auto !important; background:#FAF9F6; flex-direction:column; padding:0.5rem 0 1rem; border-bottom:2px solid var(--border); box-shadow:0 8px 30px rgba(0,0,0,0.12); z-index:9999; max-height:calc(100vh - 68px); overflow-y:auto; }
+  .nav-tabs.open { display:flex !important; }
+  .nav-tab { display:flex; height:auto; padding:0.85rem 2rem; justify-content:flex-start; font-size:0.9rem; border-bottom:1px solid var(--border); width:100%; text-align:left; }
+  .nav-tab:last-child { border-bottom:none; }
+  .nav-tab.active { background:var(--red-light); }
+  .nav-tab.active::after { display:none; }
+}
+@media(max-width:600px) {
+  .nav-tabs { top:56px; height:auto !important; max-height:calc(100vh - 56px); }
+}
+
+/* Logo strips */
+.logo-strip-label { font-family:'IBM Plex Mono',monospace; font-size:0.62rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-muted); text-align:center; margin-bottom:0.75rem; }
+.logo-strip { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:1.5rem 3rem; }
+.corp-logo { opacity:0.7; transition:opacity 0.3s ease, filter 0.3s ease, transform 0.3s ease; }
+.corp-logo:hover { opacity:1; transform:scale(1.2); }
+.tl-title .corp-logo { height:18px !important; margin-left:6px; vertical-align:middle; opacity:0.75; }
+.tl-title .corp-logo:hover { opacity:1; transform:scale(1.15); }
+
+/* EVENT PHOTO CARDS */
+.event-card { border-radius:14px; overflow:hidden; position:relative; background:var(--bg-warm); }
+.event-photo { width:100%; aspect-ratio:4/3; background:var(--bg-warm); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:0.3rem; color:var(--text-muted); font-size:0.75rem; }
+.event-photo .cam-icon { font-size:1.8rem; opacity:0.3; }
+.event-photo .cam-label { font-size:0.72rem; font-weight:500; }
+.event-photo .cam-hint { font-size:0.65rem; opacity:0.6; }
+.event-photo img { width:100%; height:100%; object-fit:cover; }
+.event-overlay { position:absolute; bottom:0; left:0; right:0; padding:1rem 1.25rem; background:linear-gradient(transparent, rgba(26,26,46,0.85)); color:white; }
+.event-overlay h4 { font-size:0.92rem; font-weight:700; }
+.event-overlay p { font-size:0.72rem; opacity:0.8; margin-top:0.15rem; }
+/* VISUAL ENHANCEMENTS */
+.accent-strip { height:4px; background:linear-gradient(90deg, var(--red), var(--blue), var(--teal)); border-radius:2px; margin:3rem 0; opacity:0.3; }
+.pattern-icon { width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:1.5rem; margin-bottom:1rem; }
+.stat-card { background:var(--bg-dark); color:white; border-radius:16px; padding:1.5rem; text-align:center; }
+.stat-card h3 { font-family:'DM Serif Display',serif; font-size:2.8rem; letter-spacing:-0.02em; line-height:1; }
+.stat-card p { font-size:0.72rem; font-weight:500; text-transform:uppercase; letter-spacing:0.06em; margin-top:0.4rem; opacity:0.7; }
+.stat-card.red { background:var(--red); }
+.how-card { background:white; border:1px solid var(--border); border-radius:14px; padding:2rem; position:relative; overflow:hidden; transition:box-shadow .3s, transform .3s; }
+.how-card:hover { box-shadow:var(--sh-md); transform:translateY(-2px); }
+.how-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; }
+.how-card.hc-red::before { background:var(--red); }
+.how-card.hc-blue::before { background:var(--blue); }
+.how-card.hc-teal::before { background:var(--teal); }
+.topic-card { background:white; border:1px solid var(--border); border-radius:14px; padding:2rem; position:relative; overflow:hidden; transition:box-shadow .3s, transform .3s; }
+.topic-card:hover { box-shadow:var(--sh-md); transform:translateY(-2px); }
+.topic-card h4 { font-family:'DM Serif Display',serif; font-size:1.4rem; line-height:1.2; margin-bottom:0.6rem; }
+.topic-badge { display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:0.75rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:0.35rem 0.8rem; border-radius:6px; margin-bottom:1rem; }
+.full-accent { background:var(--bg-dark); color:white; position:relative; overflow:hidden; }
+.full-accent::before { content:''; position:absolute; top:-50%; right:-20%; width:400px; height:400px; background:radial-gradient(circle, rgba(220,38,38,0.15) 0%, transparent 70%); pointer-events:none; }
+.comp-table tr:nth-child(even) td { background:rgba(0,0,0,0.015); }
+.infographic-frame { border-radius:16px; overflow:hidden; box-shadow:var(--sh-lg); border:1px solid var(--border); }
+.infographic-frame img { width:100%; display:block; }
+
+/* ── Apply Modal ── */
+#sg-overlay{display:none;position:fixed;inset:0;background:rgba(10,13,28,.85);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:9999;align-items:center;justify-content:center;padding:1rem}
+#sg-overlay.active{display:flex}
+#sg-modal{background:#12172a;border:1px solid rgba(255,255,255,.08);border-radius:14px;width:100%;max-width:540px;max-height:90vh;overflow-y:auto;padding:2.5rem 2.5rem 2rem;position:relative;animation:sg-up .32s cubic-bezier(.22,1,.36,1) both}
+@keyframes sg-up{from{opacity:0;transform:translateY(20px) scale(.98)}to{opacity:1;transform:none}}
+#sg-close{position:absolute;top:1.25rem;right:1.25rem;background:none;border:none;cursor:pointer;color:rgba(255,255,255,.4);font-size:1.4rem;line-height:1;transition:color .2s;padding:.2rem .4rem}
+#sg-close:hover{color:#fff}
+.sg-eyebrow{font-family:'Courier New',monospace;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#e8392a;margin:0 0 .5rem}
+.sg-title{font-size:1.5rem;font-weight:800;color:#fff;margin:0 0 .35rem;line-height:1.2;font-family:Georgia,serif}
+.sg-sub{font-size:.82rem;color:rgba(255,255,255,.45);margin:0 0 1.6rem;line-height:1.5}
+.sg-field{margin-bottom:.9rem}
+.sg-field label{display:block;font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.3rem}
+.sg-field input,.sg-field select,.sg-field textarea{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:6px;color:#fff;font-size:.9rem;padding:.6rem .8rem;transition:border-color .2s,background .2s;outline:none;box-sizing:border-box;font-family:inherit}
+.sg-field input::placeholder,.sg-field textarea::placeholder{color:rgba(255,255,255,.25)}
+.sg-field input:focus,.sg-field select:focus,.sg-field textarea:focus{border-color:rgba(232,57,42,.6);background:rgba(255,255,255,.07)}
+.sg-field select option{background:#1a2040;color:#fff}
+.sg-field textarea{resize:vertical;min-height:70px}
+.sg-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+#sg-submit{width:100%;margin-top:.4rem;background:#e8392a;color:#fff;border:none;border-radius:6px;font-size:.95rem;font-weight:700;padding:.8rem 1.5rem;cursor:pointer;letter-spacing:.02em;transition:background .2s,transform .15s}
+#sg-submit:hover:not(:disabled){background:#c72e21;transform:translateY(-1px)}
+#sg-submit:disabled{opacity:.6;cursor:not-allowed;transform:none}
+#sg-error{display:none;background:rgba(232,57,42,.12);border:1px solid rgba(232,57,42,.35);border-radius:6px;color:#ff7b6e;font-size:.8rem;padding:.55rem .8rem;margin-top:.7rem}
+#sg-success{display:none;text-align:center;padding:1.5rem 0 .5rem}
+.sg-check{width:52px;height:52px;background:#e8392a;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:1.4rem;color:#fff}
+#sg-success h3{color:#fff;font-size:1.2rem;font-family:Georgia,serif;margin:0 0 .5rem}
+#sg-success p{color:rgba(255,255,255,.5);font-size:.85rem;line-height:1.6;margin:0}
+.sg-privacy{font-size:.7rem;color:rgba(255,255,255,.25);text-align:center;margin-top:.8rem;line-height:1.5}
+#sg-modal::-webkit-scrollbar{width:4px}
+#sg-modal::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:4px}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+<div class="nav-inner">
+  <a class="nav-brand" href="#" onclick="showPage('home')"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Mosaic%20Venture%20Lab_U.jpg" style="height:28px;width:auto;vertical-align:middle;margin-right:8px;" alt="Mosaic">SELL <em>GLOBAL</em></a>
+  <button class="nav-hamburger" onclick="document.querySelector('.nav-tabs').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showPage('home')">Home</button>
+    <button class="nav-tab" onclick="showPage('program')">Program</button>
+    <button class="nav-tab" onclick="showPage('sessions')">Sessions</button>
+    <button class="nav-tab" onclick="showPage('outcomes')">Outcomes</button>
+    <button class="nav-tab" onclick="showPage('track')">Track Record</button>
+    <button class="nav-tab" onclick="showPage('mentors')">Mentors</button>
+    <button class="nav-tab" onclick="showPage('apply')">Apply</button>
+  </div>
+</div>
+</nav>
+
+<!-- ==================== HOME ==================== -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <div class="section" style="padding-top:10rem;padding-bottom:4rem;">
+    <div class="reveal">
+      <div class="hero-tag"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Mosaic%20Venture%20Lab_U.jpg" style="height:32px;width:auto;vertical-align:middle;margin-right:8px;" alt="Mosaic">Mosaic Venture Lab</div>
+      <h1 class="hero-title">Your tech works.<br>Now learn to <em>sell it.</em></h1>
+      <p class="hero-sub">8 weeks that teach Taiwanese startups and SMEs to sell the way European and American buyers actually buy. AI-native sales pipelines. Cross-cultural buyer psychology. Competitive simulation. B2B and B2C tracks.</p>
+      <div class="g4 reveal" style="margin-top:2.5rem;">
+        <div class="stat-card"><h3>180+</h3><p>Startups Trained</p></div>
+        <div class="stat-card red"><h3>15+</h3><p>International Mentors</p></div>
+        <div class="stat-card"><h3>3</h3><p>Cohorts Completed</p></div>
+        <div class="stat-card"><h3>14</h3><p>Years in Taiwan</p></div>
+      </div>
+
+      <!-- MENTOR COMPANY LOGOS -->
+      <div style="margin-top:2.5rem;">
+        <div class="logo-strip-label">Our mentors come from</div>
+        <div class="logo-strip">
+        <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M12.48%2010.92v3.28h7.84c-.24%201.84-.853%203.187-1.787%204.133-1.147%201.147-2.933%202.4-6.053%202.4-4.827%200-8.6-3.893-8.6-8.72s3.773-8.72%208.6-8.72c2.6%200%204.507%201.027%205.907%202.347l2.307-2.307C18.747%201.44%2016.133%200%2012.48%200%205.867%200%20.307%205.387.307%2012s5.56%2012%2012.173%2012c3.573%200%206.267-1.173%208.373-3.36%202.16-2.16%202.84-5.213%202.84-7.667%200-.76-.053-1.467-.173-2.053H12.48z'%20fill='%23888888'/></svg>" alt="Google" class="corp-logo" style="height:28px;">
+        <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M19.848%2C7.848c-0.992%2C0-1.902%2C0.348-2.616%2C0.928c-0.714-0.58-1.624-0.928-2.616-0.928%20c-0.992%2C0-1.902%2C0.348-2.616%2C0.928c-0.714-0.58-1.624-0.928-2.616-0.928c-0.992%2C0-1.902%2C0.348-2.616%2C0.928%20c-0.714-0.58-1.624-0.928-2.616-0.928C1.859%2C7.848%2C0%2C9.707%2C0%2C12s1.859%2C4.152%2C4.152%2C4.152c0.992%2C0%2C1.902-0.348%2C2.616-0.928%20c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928c0.992%2C0%2C1.902-0.348%2C2.616-0.928c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928%20c0.992%2C0%2C1.902-0.348%2C2.616-0.928c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928C22.141%2C16.152%2C24%2C14.293%2C24%2C12S22.141%2C7.848%2C19.848%2C7.848z%20M17.232%2C13.866c-0.376-0.526-0.598-1.17-0.598-1.866c0-0.696%2C0.222-1.34%2C0.598-1.866c0.376%2C0.526%2C0.598%2C1.17%2C0.598%2C1.866%20C17.83%2C12.696%2C17.608%2C13.34%2C17.232%2C13.866z%20M12%2C13.866c-0.376-0.526-0.598-1.17-0.598-1.866c0-0.696%2C0.222-1.34%2C0.598-1.866%20c0.376%2C0.526%2C0.598%2C1.17%2C0.598%2C1.866C12.598%2C12.696%2C12.376%2C13.34%2C12%2C13.866z%20M6.768%2C13.866C6.392%2C13.34%2C6.17%2C12.696%2C6.17%2C12%20c0-0.696%2C0.222-1.34%2C0.598-1.866C7.144%2C10.66%2C7.366%2C11.304%2C7.366%2C12C7.366%2C12.696%2C7.144%2C13.34%2C6.768%2C13.866z%20M0.938%2C12%20c0-1.775%2C1.439-3.214%2C3.214-3.214c0.736%2C0%2C1.414%2C0.248%2C1.956%2C0.665C5.56%2C10.154%2C5.232%2C11.039%2C5.232%2C12%20c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665C2.377%2C15.214%2C0.938%2C13.775%2C0.938%2C12z%20M7.428%2C14.549%20C7.976%2C13.846%2C8.304%2C12.961%2C8.304%2C12c0-0.961-0.328-1.846-0.876-2.549c0.542-0.416%2C1.22-0.665%2C1.956-0.665%20c0.736%2C0%2C1.414%2C0.248%2C1.956%2C0.665c-0.549%2C0.704-0.876%2C1.588-0.876%2C2.549c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549%20c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665C8.648%2C15.214%2C7.97%2C14.966%2C7.428%2C14.549z%20M12.66%2C14.549c0.549-0.704%2C0.876-1.588%2C0.876-2.549%20c0-0.961-0.328-1.846-0.876-2.55c0.542-0.416%2C1.22-0.665%2C1.956-0.665s1.414%2C0.248%2C1.956%2C0.665%20c-0.549%2C0.704-0.876%2C1.588-0.876%2C2.549c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665%20C13.88%2C15.214%2C13.202%2C14.966%2C12.66%2C14.549z%20M19.848%2C15.214c-0.736%2C0-1.414-0.248-1.956-0.665c0.548-0.704%2C0.876-1.588%2C0.876-2.549%20c0-0.961-0.328-1.846-0.876-2.549c0.542-0.416%2C1.22-0.665%2C1.956-0.665c1.775%2C0%2C3.214%2C1.439%2C3.214%2C3.214%20S21.623%2C15.214%2C19.848%2C15.214z'%20fill='%23888888'/></svg>" alt="Audi" class="corp-logo" style="height:34px;">
+        <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M12%200C5.36%200%200%205.36%200%2012S5.36%2024%2012%2024%2024%2018.64%2024%2012%2018.64%200%2012%200M12%201.41C13.2%201.41%2014.36%201.63%2015.43%202L12.13%209.13C12.09%209.17%2012.09%209.26%2012%209.26S11.91%209.17%2011.87%209.13L8.57%202C9.64%201.63%2010.8%201.42%2012%201.42M6.9%202.74L10.72%2010.97C10.8%2011.14%2010.89%2011.19%2011%2011.19H13C13.12%2011.19%2013.2%2011.14%2013.29%2010.97L17.06%202.74C18.64%203.64%2020%204.93%2020.96%206.47L15.6%2016.84C15.56%2016.93%2015.5%2016.97%2015.47%2016.97C15.39%2016.97%2015.39%2016.89%2015.34%2016.84L13.29%2012.3C13.2%2012.13%2013.12%2012.09%2013%2012.09H11C10.89%2012.09%2010.8%2012.13%2010.71%2012.3L8.66%2016.84C8.61%2016.89%208.62%2016.97%208.53%2016.97C8.44%2016.97%208.44%2016.89%208.4%2016.84L3%206.47C3.94%204.93%205.32%203.64%206.9%202.74M2.06%208.53L8.23%2020.53C8.31%2020.7%208.4%2020.83%208.62%2020.83C8.83%2020.83%208.91%2020.7%209%2020.53L11.87%2014.14C11.91%2014.06%2011.96%2014%2012%2014C12.09%2014%2012.09%2014.1%2012.13%2014.14L15.04%2020.53C15.13%2020.7%2015.21%2020.83%2015.43%2020.83C15.64%2020.83%2015.73%2020.7%2015.81%2020.53L22%208.53C22.37%209.6%2022.59%2010.76%2022.59%2012C22.54%2017.79%2017.79%2022.59%2012%2022.59C6.21%2022.59%201.46%2017.79%201.46%2012C1.46%2010.8%201.67%209.65%202.06%208.53Z'%20fill='%23888888'/></svg>" alt="Volkswagen" class="corp-logo" style="height:32px;">
+        <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M17.963%2014.6V9.324h1.222v4.204h2.14v1.07h-3.362zm-9.784-3.288l2.98-2.292c.281.228.56.458.841.687l-2.827%202.14.611.535%202.827-2.216c.281.228.56.458.841.688a295.83%20295.83%200%200%201-2.827%202.216l.61.536%202.83-2.295-.001-1.986h1.223v4.204h2.216v1.07h-3.362v-1.987c-.995.763-1.987%201.529-2.981%202.292l-2.981-2.292c-.144.729-.653%201.36-1.312%201.694-.285.147-.597.24-.915.276-.183.022-.367.017-.551.017H3.516V9.325H5.69a2.544%202.544%200%200%201%201.563.557c.454.36.778.872.927%201.43m-3.516-.917v3.21l.953-.001a1.377%201.377%200%200%200%201.036-.523%201.74%201.74%200%200%200%20.182-1.889%201.494%201.494%200%200%200-.976-.766c-.166-.04-.338-.03-.507-.032h-.688zM11.82%200h.337a11.94%2011.94%200%200%201%205.405%201.373%2012.101%2012.101%200%200%201%204.126%203.557A11.93%2011.93%200%200%201%2024%2011.82v.36a11.963%2011.963%200%200%201-3.236%208.033A11.967%2011.967%200%200%201%2012.182%2024h-.361a11.993%2011.993%200%200%201-4.145-.806%2012.04%2012.04%200%200%201-4.274-2.836A12.057%2012.057%200%200%201%20.576%2015.67%2012.006%2012.006%200%200%201%200%2012.181v-.361a11.924%2011.924%200%200%201%201.992-6.396%2012.211%2012.211%200%200%201%204.71-4.172A11.875%2011.875%200%200%201%2011.82%200m-.153%201.23a10.724%2010.724%200%200%200-6.43%202.375%2010.78%2010.78%200%200%200-3.319%204.573%2010.858%2010.858%200%200%200%20.193%208.12%2010.788%2010.788%200%200%200%203.546%204.421%2010.698%2010.698%200%200%200%204.786%201.946c1.456.209%202.955.124%204.376-.26a10.756%2010.756%200%200%200%205.075-3.062%2010.742%2010.742%200%200%200%202.686-5.28%2010.915%2010.915%200%200%200-.122-4.682%2010.77%2010.77%200%200%200-7.098-7.626%2010.78%2010.78%200%200%200-3.693-.525z'%20fill='%23888888'/></svg>" alt="Dell" class="corp-logo" style="height:26px;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/EMC-Logo.png" alt="EMC" class="corp-logo" style="height:30px;object-fit:contain;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/continental.png" alt="Continental" class="corp-logo" style="height:28px;object-fit:contain;">
+        <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M12%200C5.373%200%200%205.373%200%2012s5.373%2012%2012%2012%2012-5.373%2012-12C24.002%205.375%2018.632.002%2012.007%200H12zm7.327%2018.065s-.581-2.627-1.528-4.197c-.514-.857-1.308-1.553-2.368-1.532-.745%200-1.399.423-2.2%201.553-.469.77-.882%201.573-1.235%202.403%200%200-.29-.675-.63-1.343a8.038%208.038%200%200%200-.605-1.049c-.804-1.13-1.455-1.539-2.2-1.553-1.049-.021-1.854.675-2.364%201.528-.948%201.574-1.528%204.197-1.528%204.197h-.864l4.606-15.12%203.56%2011.804.024.021.024-.021%203.56-11.804%204.61%2015.113h-.862z'%20fill='%23888888'/></svg>" alt="Motorola" class="corp-logo" style="height:30px;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/AWS.png" alt="AWS" class="corp-logo" style="height:30px;object-fit:contain;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/IBM.png" alt="IBM" class="corp-logo" style="height:30px;object-fit:contain;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/daimler.png" alt="Daimler" class="corp-logo" style="height:28px;object-fit:contain;">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PROBLEM -->
+  <div class="full-bleed">
+    <div class="section">
+      <div class="reveal">
+        <div class="section-label">The Problem</div>
+        <h2 class="section-heading">The technology is never the issue.<br>The selling is.</h2>
+        <p class="section-sub">After training 180+ startups for CES and VivaTech, three patterns kept repeating.</p>
+      </div>
+      <div class="g3 reveal" style="margin-top:2.5rem;">
+        <div class="card" style="border-top:4px solid var(--red);">
+          <div class="pattern-icon" style="background:var(--red-light);color:var(--red);">⚙️</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:0.68rem;font-weight:600;letter-spacing:0.08em;color:var(--red);margin-bottom:0.5rem;">PATTERN 1</div>
+          <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:0.5rem;">The Supplier Trap</h3>
+          <p style="font-size:0.88rem;color:var(--text-sec);line-height:1.6;">Founders lead with factory credentials — yield rate, BOM, ODM — instead of the problem they solve. A mentor scored one startup's competitive positioning 1 out of 5: "Less tech jargon, more business language."</p>
+        </div>
+        <div class="card" style="border-top:4px solid var(--amber);">
+          <div class="pattern-icon" style="background:#FEF3C7;color:var(--amber);">💰</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:0.68rem;font-weight:600;letter-spacing:0.08em;color:var(--amber);margin-bottom:0.5rem;">PATTERN 2</div>
+          <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:0.5rem;">The Budget Gap</h3>
+          <p style="font-size:0.88rem;color:var(--text-sec);line-height:1.6;">A real CES 2026 startup offered $200/day for booth staff — no flight from Taiwan, no hotel. This signals to every potential partner that the company doesn't understand global operating costs.</p>
+        </div>
+        <div class="card" style="border-top:4px solid var(--blue);">
+          <div class="pattern-icon" style="background:var(--blue-light);color:var(--blue);">🗣️</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:0.68rem;font-weight:600;letter-spacing:0.08em;color:var(--blue);margin-bottom:0.5rem;">PATTERN 3</div>
+          <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:0.5rem;">The Communication Mismatch</h3>
+          <p style="font-size:0.88rem;color:var(--text-sec);line-height:1.6;">The CEO pitches in limited English while a fluent team member watches silently. Another mentor's entire feedback for a startup: "Good tech with terrible storytelling." Scored 1 out of 5.</p>
+        </div>
+      </div>
+      <!-- INFOGRAPHIC -->
+      <div class="reveal" style="margin-top:3rem;">
+        <div class="infographic-frame">
+          <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/infographic.png" alt="Sell Global — From Technical Excellence to International Deals">
+        </div>
+        <p style="font-size:0.68rem;color:var(--text-muted);text-align:center;margin-top:0.75rem;font-style:italic;">SELL GLOBAL: 8 weeks from technical excellence to international deals.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRACK RECORD -->
+  <div class="section">
+    <div class="reveal">
+      <div class="section-label">14 Years in Taiwan</div>
+      <h2 class="section-heading">Built here. Tested here.<br>Refined by watching what works.</h2>
+    </div>
+    <div class="tl-grid reveal" style="margin-top:2.5rem;">
+      <div class="tl-item">
+        <div class="tl-year">2011-2013</div>
+        <div class="tl-title">Startup Weekend Taiwan <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/startup-weekend-vector-logo.png" alt="SW" class="corp-logo" style="height:18px;object-fit:contain;"></div>
+        <div class="tl-desc">Introduced Startup Weekend to Taiwan. Events at Google, Microsoft, and top universities in Hsinchu, Tainan, Kaohsiung, Taipei.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2012-2018</div>
+        <div class="tl-title">APEC Accelerator O2O <img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20130%2040'%3E%3Ccircle%20cx='20'%20cy='20'%20r='14'%20fill='none'%20stroke='%230054A6'%20stroke-width='1.5'/%3E%3Cellipse%20cx='20'%20cy='20'%20rx='8'%20ry='14'%20fill='none'%20stroke='%230054A6'%20stroke-width='0.8'/%3E%3Cline%20x1='6'%20y1='14'%20x2='34'%20y2='14'%20stroke='%230054A6'%20stroke-width='0.6'/%3E%3Cline%20x1='6'%20y1='20'%20x2='34'%20y2='20'%20stroke='%230054A6'%20stroke-width='0.6'/%3E%3Cline%20x1='6'%20y1='26'%20x2='34'%20y2='26'%20stroke='%230054A6'%20stroke-width='0.6'/%3E%3Ctext%20x='42'%20y='26'%20font-family='Helvetica%20Neue,Helvetica,Arial,sans-serif'%20font-weight='700'%20font-size='20'%20letter-spacing='2'%20fill='%230054A6'%3EAPEC%3C/text%3E%3C/svg%3E" alt="APEC" class="corp-logo" style="height:28px;"></div>
+        <div class="tl-desc">Built the APEC Accelerator Network with MoEA. Startup pitch events across APEC economies for 6 consecutive years.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2015-PRESENT</div>
+        <div class="tl-title">VW Group / Audi Partner <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M12%200C5.36%200%200%205.36%200%2012S5.36%2024%2012%2024%2024%2018.64%2024%2012%2018.64%200%2012%200M12%201.41C13.2%201.41%2014.36%201.63%2015.43%202L12.13%209.13C12.09%209.17%2012.09%209.26%2012%209.26S11.91%209.17%2011.87%209.13L8.57%202C9.64%201.63%2010.8%201.42%2012%201.42M6.9%202.74L10.72%2010.97C10.8%2011.14%2010.89%2011.19%2011%2011.19H13C13.12%2011.19%2013.2%2011.14%2013.29%2010.97L17.06%202.74C18.64%203.64%2020%204.93%2020.96%206.47L15.6%2016.84C15.56%2016.93%2015.5%2016.97%2015.47%2016.97C15.39%2016.97%2015.39%2016.89%2015.34%2016.84L13.29%2012.3C13.2%2012.13%2013.12%2012.09%2013%2012.09H11C10.89%2012.09%2010.8%2012.13%2010.71%2012.3L8.66%2016.84C8.61%2016.89%208.62%2016.97%208.53%2016.97C8.44%2016.97%208.44%2016.89%208.4%2016.84L3%206.47C3.94%204.93%205.32%203.64%206.9%202.74M2.06%208.53L8.23%2020.53C8.31%2020.7%208.4%2020.83%208.62%2020.83C8.83%2020.83%208.91%2020.7%209%2020.53L11.87%2014.14C11.91%2014.06%2011.96%2014%2012%2014C12.09%2014%2012.09%2014.1%2012.13%2014.14L15.04%2020.53C15.13%2020.7%2015.21%2020.83%2015.43%2020.83C15.64%2020.83%2015.73%2020.7%2015.81%2020.53L22%208.53C22.37%209.6%2022.59%2010.76%2022.59%2012C22.54%2017.79%2017.79%2022.59%2012%2022.59C6.21%2022.59%201.46%2017.79%201.46%2012C1.46%2010.8%201.67%209.65%202.06%208.53Z'%20fill='%23888888'/></svg>" alt="VW" class="corp-logo" style="height:16px;"> <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M19.848%2C7.848c-0.992%2C0-1.902%2C0.348-2.616%2C0.928c-0.714-0.58-1.624-0.928-2.616-0.928%20c-0.992%2C0-1.902%2C0.348-2.616%2C0.928c-0.714-0.58-1.624-0.928-2.616-0.928c-0.992%2C0-1.902%2C0.348-2.616%2C0.928%20c-0.714-0.58-1.624-0.928-2.616-0.928C1.859%2C7.848%2C0%2C9.707%2C0%2C12s1.859%2C4.152%2C4.152%2C4.152c0.992%2C0%2C1.902-0.348%2C2.616-0.928%20c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928c0.992%2C0%2C1.902-0.348%2C2.616-0.928c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928%20c0.992%2C0%2C1.902-0.348%2C2.616-0.928c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928C22.141%2C16.152%2C24%2C14.293%2C24%2C12S22.141%2C7.848%2C19.848%2C7.848z%20M17.232%2C13.866c-0.376-0.526-0.598-1.17-0.598-1.866c0-0.696%2C0.222-1.34%2C0.598-1.866c0.376%2C0.526%2C0.598%2C1.17%2C0.598%2C1.866%20C17.83%2C12.696%2C17.608%2C13.34%2C17.232%2C13.866z%20M12%2C13.866c-0.376-0.526-0.598-1.17-0.598-1.866c0-0.696%2C0.222-1.34%2C0.598-1.866%20c0.376%2C0.526%2C0.598%2C1.17%2C0.598%2C1.866C12.598%2C12.696%2C12.376%2C13.34%2C12%2C13.866z%20M6.768%2C13.866C6.392%2C13.34%2C6.17%2C12.696%2C6.17%2C12%20c0-0.696%2C0.222-1.34%2C0.598-1.866C7.144%2C10.66%2C7.366%2C11.304%2C7.366%2C12C7.366%2C12.696%2C7.144%2C13.34%2C6.768%2C13.866z%20M0.938%2C12%20c0-1.775%2C1.439-3.214%2C3.214-3.214c0.736%2C0%2C1.414%2C0.248%2C1.956%2C0.665C5.56%2C10.154%2C5.232%2C11.039%2C5.232%2C12%20c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665C2.377%2C15.214%2C0.938%2C13.775%2C0.938%2C12z%20M7.428%2C14.549%20C7.976%2C13.846%2C8.304%2C12.961%2C8.304%2C12c0-0.961-0.328-1.846-0.876-2.549c0.542-0.416%2C1.22-0.665%2C1.956-0.665%20c0.736%2C0%2C1.414%2C0.248%2C1.956%2C0.665c-0.549%2C0.704-0.876%2C1.588-0.876%2C2.549c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549%20c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665C8.648%2C15.214%2C7.97%2C14.966%2C7.428%2C14.549z%20M12.66%2C14.549c0.549-0.704%2C0.876-1.588%2C0.876-2.549%20c0-0.961-0.328-1.846-0.876-2.55c0.542-0.416%2C1.22-0.665%2C1.956-0.665s1.414%2C0.248%2C1.956%2C0.665%20c-0.549%2C0.704-0.876%2C1.588-0.876%2C2.549c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665%20C13.88%2C15.214%2C13.202%2C14.966%2C12.66%2C14.549z%20M19.848%2C15.214c-0.736%2C0-1.414-0.248-1.956-0.665c0.548-0.704%2C0.876-1.588%2C0.876-2.549%20c0-0.961-0.328-1.846-0.876-2.549c0.542-0.416%2C1.22-0.665%2C1.956-0.665c1.775%2C0%2C3.214%2C1.439%2C3.214%2C3.214%20S21.623%2C15.214%2C19.848%2C15.214z'%20fill='%23888888'/></svg>" alt="Audi" class="corp-logo" style="height:18px;"></div>
+        <div class="tl-desc">Technology scouting for Volkswagen Group and Audi. 25+ country supplier network across 5 continents.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2024</div>
+        <div class="tl-title">TTA × CES 2025 <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/TTA.jpg" alt="TTA" class="corp-logo" style="height:28px;object-fit:contain;"></div>
+        <div class="tl-desc">Trained startups for CES 2025. 2-day bootcamp with keynotes, workshop tracks, and competitive simulations.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2025</div>
+        <div class="tl-title">CES 2026 + VivaTech</div>
+        <div class="tl-desc">180+ startups trained for CES 2026 and VivaTech 2025. Professor training for ITRI on patent commercialization.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2026</div>
+        <div class="tl-title">SELL GLOBAL</div>
+        <div class="tl-desc">Everything we learned, distilled into a structured 8-week program. Cross-cultural sales. Lead generation. Trade show readiness.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- APPROACH -->
+  <div class="full-bleed">
+    <div class="section">
+      <div class="reveal">
+        <div class="section-label">How It Works</div>
+        <h2 class="section-heading">8 weeks. 4 online. 4 in-person.<br>Send the right people to the right sessions.</h2>
+      </div>
+      <div class="g3 reveal" style="margin-top:2.5rem;">
+        <div class="how-card hc-red">
+          <div style="font-size:2rem;margin-bottom:0.75rem;">🎯</div>
+          <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.4rem;">Learn How Buyers Buy</h3>
+          <p style="font-size:0.85rem;color:var(--text-sec);line-height:1.6;">European and American buyers evaluate trust, make decisions, and communicate differently. Two dedicated online sessions cover each market's norms with live role-play demos.</p>
+        </div>
+        <div class="how-card hc-blue">
+          <div style="font-size:2rem;margin-bottom:0.75rem;">🎭</div>
+          <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.4rem;">Role-Play Is the Core</h3>
+          <p style="font-size:0.85rem;color:var(--text-sec);line-height:1.6;">40% of program time is mentor-vs-founder role-play. A mentor plays a skeptical German buyer. You pitch. They push back. You adapt. That's how the learning sticks.</p>
+        </div>
+        <div class="how-card hc-teal">
+          <div style="font-size:2rem;margin-bottom:0.75rem;">👥</div>
+          <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.4rem;">Send Your Whole Team</h3>
+          <p style="font-size:0.85rem;color:var(--text-sec);line-height:1.6;">Your BD lead attends lead generation training. Your engineer joins the technical session. Your CEO comes to strategy day. One enrollment, multiple team members at relevant sessions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THREE HOT TOPICS -->
+  <div class="full-accent">
+    <div class="section">
+      <div class="reveal">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--red);margin-bottom:1rem;">New for 2026</div>
+        <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(2rem,4vw,3rem);line-height:1.15;letter-spacing:-0.01em;margin-bottom:1.5rem;">Three topics Taiwan's startups<br>are asking for right now.</h2>
+        <p style="font-size:1.05rem;line-height:1.7;color:rgba(255,255,255,0.65);max-width:640px;">Added to the curriculum based on direct feedback from founders and industry stakeholders.</p>
+      </div>
+      <div class="g3 reveal" style="margin-top:2rem;">
+        <div class="topic-card">
+          <div class="topic-badge" style="background:var(--red-light);color:var(--red);">🤖 AI-Native</div>
+          <h4 style="font-size:0.95rem;font-weight:700;margin-bottom:0.5rem;">AI-Powered Founder-Led Sales</h4>
+          <p style="font-size:0.85rem;line-height:1.7;color:var(--text-sec);">Browser agents as your AI SDR. Automated outbound pipelines from lead sourcing through enrichment to sequenced outreach. Tools like Clay, Instantly, and Claude Cowork — the same stack a16z speedrun founders are using to sell to banks and hospitals with zero sales hires. You build your pipeline in-session.</p>
+        </div>
+        <div class="topic-card">
+          <div class="topic-badge" style="background:var(--blue-light);color:var(--blue);">⚡ Build Fast</div>
+          <h4 style="font-size:0.95rem;font-weight:700;margin-bottom:0.5rem;">Vibe Coding for Sales Tools</h4>
+          <p style="font-size:0.85rem;line-height:1.7;color:var(--text-sec);">Build landing pages, lead-capture forms, ROI calculators, and custom GTM dashboards — no engineers. Founders prototype sales tools in-session and ship them the same week. The sales enablement that used to require a 3-month dev cycle now takes an afternoon.</p>
+        </div>
+        <div class="topic-card">
+          <div class="topic-badge" style="background:#ECFDF5;color:var(--teal);">🌍 Cross-Cultural</div>
+          <h4 style="font-size:0.95rem;font-weight:700;margin-bottom:0.5rem;">Business English for Deals</h4>
+          <p style="font-size:0.85rem;line-height:1.7;color:var(--text-sec);">Meeting language, negotiation phrases, and the cultural signals that close or kill a deal. Role-play practice with native-speaking mentors across American, German, and French buyer personas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POSITIONING -->
+  <div class="section">
+    <div class="accent-strip"></div>
+    <div class="reveal">
+      <div class="section-label">How This Is Different</div>
+      <h2 class="section-heading">Existing programs teach you<br>how to build a startup.<br>We teach you how to sell one.</h2>
+    </div>
+    <table class="comp-table reveal" style="margin-top:1.5rem;">
+      <thead>
+        <tr><th style="width:20%"></th><th class="col-old" style="width:40%">Typical Training</th><th class="col-new" style="width:40%">SELL GLOBAL</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Curriculum</td><td class="col-old">Value proposition, market research, business model, scalability, pitch</td><td class="col-new">Cross-cultural selling, lead generation, materials clinic, buyer role-play, competitive simulation</td></tr>
+        <tr><td>Method</td><td class="col-old">Expert presents. Audience listens. Q&A.</td><td class="col-new">Mentor plays buyer. Founder must sell. Debrief.</td></tr>
+        <tr><td>Success Metric</td><td class="col-old">Pitch deck quality. Demo Day performance.</td><td class="col-new">Meetings booked. Emails sent. Conversion rate.</td></tr>
+        <tr><td>Attendance</td><td class="col-old">Same person, every week.</td><td class="col-new">Flexible. Send different team members to relevant sessions.</td></tr>
+        <tr><td>Mentors</td><td class="col-old">Local advisors, subject matter experts.</td><td class="col-new">International executives playing adversarial buyer personas.</td></tr>
+        <tr><td>Best For</td><td class="col-old">Early-stage teams. Domestic market.</td><td class="col-new">Product-ready teams targeting CES, VivaTech, or direct global sales.</td></tr>
+      </tbody>
+    </table>
+    <p class="reveal" style="font-size:0.88rem;color:var(--text-sec);margin-top:1.5rem;line-height:1.7;">Both program types serve the ecosystem. Go through foundational training first. Enter SELL GLOBAL when you're ready to face international buyers.</p>
+  </div>
+
+  <!-- EVENT PHOTOS -->
+  <div class="section-sm">
+    <div class="g4 reveal">
+      <div class="event-card">
+        <div class="event-photo" style="aspect-ratio:5/4;"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/CES%202025%20Bootcamp.jpg" alt="CES 2025 Bootcamp"></div>
+        <div class="event-overlay"><h4>CES 2025 Bootcamp</h4></div>
+      </div>
+      <div class="event-card">
+        <div class="event-photo" style="aspect-ratio:5/4;"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/VivaTech%202025.JPG" alt="VivaTech 2025 Workshop"></div>
+        <div class="event-overlay"><h4>VivaTech 2025</h4></div>
+      </div>
+      <div class="event-card">
+        <div class="event-photo" style="aspect-ratio:5/4;"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/War%20Games%20Simulation.jpg" alt="War Games Simulation"></div>
+        <div class="event-overlay"><h4>War Games Simulation</h4></div>
+      </div>
+      <div class="event-card">
+        <div class="event-photo" style="aspect-ratio:5/4;"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Mentor%20Sessions.jpg" alt="Mentor Sessions"></div>
+        <div class="event-overlay"><h4>Mentor Sessions</h4></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="section-sm">
+    <div class="cta-section reveal">
+      <h2>Your technology can compete globally.</h2>
+      <p>The question is whether your team is ready to sell it the way global buyers actually buy.</p>
+      <button class="cta-btn" onclick="openApplyModal()">Apply to SELL GLOBAL →</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ==================== PROGRAM ==================== -->
+<div class="page" id="page-program">
+  <div class="section" style="padding-top:8rem;">
+    <div class="reveal">
+      <div class="section-label">Program Design</div>
+      <h1 class="section-heading">8 weeks. Online + in-person.<br>B2B and B2C tracks split at Week 5.</h1>
+      <p class="section-sub">Weeks 1–4 build the foundation together. Weeks 5–8 split into specialized B2B and B2C tracks with dedicated War Games and Show Day simulations.</p>
+      <p class="section-sub">Companies and individuals learn together for cross-cultural sessions, then split for role-play and career-specific workshops.</p>
+    </div>
+
+    <!-- TRACKS -->
+    <div class="g2 reveal" style="margin-top:3rem;">
+      <div class="track-card track-a">
+        <div class="track-tag">TRACK A</div>
+        <div class="track-title">Companies</div>
+        <div class="track-desc">For startups with a product and a team. Goal: become capable of independently generating and closing deals with international buyers. Send your CEO to strategy. Your BD lead to sales. Your engineer to technical sessions. 20-30 companies per cohort.</div>
+      </div>
+      <div class="track-card track-b">
+        <div class="track-tag">TRACK B</div>
+        <div class="track-title">Individuals</div>
+        <div class="track-desc">For students, aspiring entrepreneurs, and career-switchers. Goal: understand what global entrepreneurship actually requires — the real math, real skills, real career paths. 15-25 participants per cohort.</div>
+      </div>
+    </div>
+
+    <!-- WEEK OVERVIEW -->
+    <div class="reveal" style="margin-top:4rem;">
+      <h2 class="section-heading">Week by week.</h2>
+    </div>
+
+    <div class="reveal">
+      <div class="week-item">
+        <div><div class="week-num">1</div><div class="week-format">Online · 90 min</div></div>
+        <div>
+          <div class="week-title">Your Buyer's World</div>
+          <div class="week-desc">How European and American buyers evaluate startups. What they look for, what kills trust, what earns a second meeting. Self-assessment diagnostic: "How ready is your team right now?"</div>
+          <div class="week-who">→ BOTH TRACKS · CEO + BD Lead recommended</div>
+        </div>
+      </div>
+      <div class="week-item">
+        <div><div class="week-num">2</div><div class="week-format">Online · 90 min</div></div>
+        <div>
+          <div class="week-title">The European Buyer</div>
+          <div class="week-desc">German technical due diligence culture. French relationship-first approach. Nordic flat communication. Mentor plays three buyer personas pitching the same product — watch how the approach must change for each market.</div>
+          <div class="week-who">→ BOTH TRACKS · BD Lead + Sales Team recommended</div>
+        </div>
+      </div>
+      <div class="week-item">
+        <div><div class="week-num">3</div><div class="week-format">Online · 90 min</div></div>
+        <div>
+          <div class="week-title">The American Buyer</div>
+          <div class="week-desc">Speed and directness. Pricing on the first call. Same-day follow-up or you're dead. Enterprise sales cycle. The critical difference between a VC pitch and a buyer pitch (they're different documents).</div>
+          <div class="week-who">→ BOTH TRACKS · BD Lead + Sales Team recommended</div>
+        </div>
+      </div>
+      <div class="week-item">
+        <div><div class="week-num">4</div><div class="week-format">In-Person · Full Day</div></div>
+        <div>
+          <div class="week-title">Your Story, Not Your Specs</div>
+          <div class="week-desc"><strong>Track A:</strong> The Forbidden Words drill (banned supplier vocabulary, buzzer on violations). Technical Inquisition under pressure. CEO Communication Shift — 4 rounds of delegation exercises with adversarial mentors.<br><strong>Track B:</strong> Startup vs. Corporate Math — real TSMC salary vs. real startup equity. Reverse-engineer Taiwan success cases vs. zombie startups.</div>
+          <div class="week-who">→ TRACKS SPLIT · Full team for Track A</div>
+        </div>
+      </div>
+      <div class="week-item">
+        <div><div class="week-num">5</div><div class="week-format">Online · 90 min</div></div>
+        <div>
+          <div class="week-title">Build Your Sales Machine</div>
+          <div class="week-desc"><strong>Track A:</strong> The AI-native outbound stack. Browser agents for prospecting (Claude Cowork, Operator). Lead enrichment with Clay. Automated email sequences with Instantly. LinkedIn drip campaigns. ICP filters that actually work. You leave this session with a functioning pipeline — not a slide about one.<br><strong>Track B:</strong> Personal branding for international careers. LinkedIn optimization. How to network at global events.</div>
+          <div class="week-who">→ TRACKS SPLIT · BD Lead + Marketing recommended</div>
+        </div>
+      </div>
+      <div class="week-item">
+        <div><div class="week-num">6</div><div class="week-format">In-Person · Half Day</div></div>
+        <div>
+          <div class="week-title">Trust Artifacts & Sales Materials</div>
+          <div class="week-desc"><strong>Track A:</strong> Every buyer segment has tokens of trust they need before engaging. Compliance docs, case studies, security summaries, pilot proposals. One-pager clinic. Pitch deck teardown and rebuild. Website audit. Using AI to produce trust artifacts in days instead of months. Round Robin with 4 mentor stations.<br><strong>Track B:</strong> The Equity Negotiation — play both sides of a funding deal. Evaluate term sheets. Understand dilution, vesting, liquidation preferences.</div>
+          <div class="week-who">→ TRACKS SPLIT · Marketing + BD Lead recommended</div>
+        </div>
+      </div>
+      <div class="week-item">
+        <div><div class="week-num">7</div><div class="week-format">In-Person · Full Day</div></div>
+        <div>
+          <div class="week-title">The Proving Ground</div>
+          <div class="week-desc"><strong>Track A:</strong> The War Games. Full competitive simulation. Budget reality audit. 30-second pitch rapid fire. Meeting role-play with adversarial buyer personas. Scoring begins.<br><strong>Track B:</strong> Observe and score Track A companies as "mock investors." Debrief: what patterns did you see? Which companies would you back?</div>
+          <div class="week-who">→ WAR GAMES DAY · Full team for Track A · Track B observes</div>
+        </div>
+      </div>
+      <div class="week-item">
+        <div><div class="week-num">8</div><div class="week-format">In-Person · Full Day</div></div>
+        <div>
+          <div class="week-title">Show Day</div>
+          <div class="week-desc">Full trade show simulation. The 10-Second Hook: stop a walking mentor, earn a meeting. The Lead Sprint: 50 contacts, outreach emails drafted and sent before anyone leaves. Championship Round: top 8 compete. Awards and scoring.</div>
+          <div class="week-who">→ BOTH TRACKS CONVERGE · Full team + CEO</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORMAT BREAKDOWN -->
+    <div class="g3 reveal" style="margin-top:3rem;">
+      <div class="card" style="text-align:center;">
+        <div style="font-family:'DM Serif Display',serif;font-size:2.5rem;color:var(--red);">4</div>
+        <div style="font-size:0.82rem;font-weight:600;margin-top:0.3rem;">Online Sessions</div>
+        <div style="font-size:0.78rem;color:var(--text-sec);margin-top:0.3rem;">90 minutes each. Attend from your office.</div>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="font-family:'DM Serif Display',serif;font-size:2.5rem;color:var(--red);">4</div>
+        <div style="font-size:0.82rem;font-weight:600;margin-top:0.3rem;">In-Person Days</div>
+        <div style="font-size:0.78rem;color:var(--text-sec);margin-top:0.3rem;">2 full days + 1 half day + Show Day.</div>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div style="font-family:'DM Serif Display',serif;font-size:2.5rem;color:var(--red);">1</div>
+        <div style="font-size:0.82rem;font-weight:600;margin-top:0.3rem;">War Games Day</div>
+        <div style="font-size:0.78rem;color:var(--text-sec);margin-top:0.3rem;">Competitive simulation. Adversarial personas.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SESSIONS ==================== -->
+<div class="page" id="page-sessions">
+  <div class="section" style="padding-top:8rem;">
+    <div class="reveal">
+      <div class="section-label">Teaching Method</div>
+      <h1 class="section-heading">15% briefing. 40% role-play.<br>30% simulation. 15% debrief.</h1>
+      <p class="section-sub">Lecture-heavy programs produce founders who can explain a value proposition on a whiteboard but freeze when a German buyer asks "Why should I care?" in a hallway.</p>
+    </div>
+    <div class="g4 reveal" style="margin-top:3rem;">
+      <div class="card-dark" style="text-align:center;">
+        <div style="font-family:'DM Serif Display',serif;font-size:2rem;">15%</div>
+        <div style="font-size:0.82rem;font-weight:600;margin-top:0.5rem;">Briefing</div>
+        <div style="font-size:0.75rem;opacity:0.7;margin-top:0.3rem;">Short context. Max 15 min before action starts.</div>
+      </div>
+      <div class="card-red" style="text-align:center;">
+        <div style="font-family:'DM Serif Display',serif;font-size:2rem;">40%</div>
+        <div style="font-size:0.82rem;font-weight:600;margin-top:0.5rem;">Role-Play</div>
+        <div style="font-size:0.75rem;opacity:0.85;margin-top:0.3rem;">Mentor plays buyer. Founder must sell. Core method.</div>
+      </div>
+      <div class="card-dark" style="text-align:center;">
+        <div style="font-family:'DM Serif Display',serif;font-size:2rem;">30%</div>
+        <div style="font-size:0.82rem;font-weight:600;margin-top:0.5rem;">Simulation</div>
+        <div style="font-size:0.75rem;opacity:0.7;margin-top:0.3rem;">Full trade show conditions. Competitive pressure.</div>
+      </div>
+      <div class="card-dark" style="text-align:center;">
+        <div style="font-family:'DM Serif Display',serif;font-size:2rem;">15%</div>
+        <div style="font-size:0.82rem;font-weight:600;margin-top:0.5rem;">Debrief</div>
+        <div style="font-size:0.75rem;opacity:0.7;margin-top:0.3rem;">What happened. What to fix. Action items.</div>
+      </div>
+    </div>
+
+    <!-- KEY EXERCISES -->
+    <div class="reveal" style="margin-top:4rem;">
+      <div class="section-label">Key Exercises</div>
+      <h2 class="section-heading">What happens in the room.</h2>
+    </div>
+    <div class="g2 reveal" style="margin-top:2rem;">
+      <div class="card">
+        <h3 style="font-size:1rem;font-weight:700;color:var(--red);margin-bottom:0.5rem;">The Forbidden Words Drill</h3>
+        <p style="font-size:0.88rem;color:var(--text-sec);line-height:1.7;">Pitch with banned supplier vocabulary (yield rate, BOM, ODM, factory, cost-down). Required user vocabulary (driver, passenger, experience, pain point, time saved). Buzzer on violations. Restart from zero.</p>
+      </div>
+      <div class="card">
+        <h3 style="font-size:1rem;font-weight:700;color:var(--red);margin-bottom:0.5rem;">The Technical Inquisition</h3>
+        <p style="font-size:0.88rem;color:var(--text-sec);line-height:1.7;">Once you can pitch user value, mentors shift to hostile technical due diligence. "You claim 40% improvement. Prove it. Data. Now." Say "we think" or "we plan to" — meeting over.</p>
+      </div>
+      <div class="card">
+        <h3 style="font-size:1rem;font-weight:700;color:var(--red);margin-bottom:0.5rem;">The Communication Shift</h3>
+        <p style="font-size:0.88rem;color:var(--text-sec);line-height:1.7;">Round 1: CEO forbidden from speaking. Round 2: CEO gets 30 seconds, communicator does everything else. Round 3: No slides, no notes. Round 4: Mentor switches persona mid-pitch.</p>
+      </div>
+      <div class="card">
+        <h3 style="font-size:1rem;font-weight:700;color:var(--red);margin-bottom:0.5rem;">The Lead Sprint</h3>
+        <p style="font-size:0.88rem;color:var(--text-sec);line-height:1.7;">50 qualified contacts. Outreach emails drafted, mentor-reviewed, and sent before anyone leaves the building. Not hypothetical. Real emails to real buyers on Show Day.</p>
+      </div>
+    </div>
+
+    <!-- SCORING -->
+    <div class="reveal" style="margin-top:4rem;">
+      <div class="section-label">Scoring</div>
+      <h2 class="section-heading">How we evaluate readiness.</h2>
+    </div>
+    <div class="g2 reveal" style="margin-top:1.5rem;">
+      <div>
+        <div style="margin-bottom:1.5rem;">
+          <div style="display:flex;justify-content:space-between;font-size:0.82rem;font-weight:600;margin-bottom:0.4rem;"><span>Communication Delegation</span><span>25%</span></div>
+          <div style="height:8px;background:var(--border);border-radius:4px;overflow:hidden;"><div style="width:25%;height:100%;background:var(--red);border-radius:4px;"></div></div>
+        </div>
+        <div style="margin-bottom:1.5rem;">
+          <div style="display:flex;justify-content:space-between;font-size:0.82rem;font-weight:600;margin-bottom:0.4rem;"><span>User Value Articulation</span><span>25%</span></div>
+          <div style="height:8px;background:var(--border);border-radius:4px;overflow:hidden;"><div style="width:25%;height:100%;background:var(--red);border-radius:4px;"></div></div>
+        </div>
+        <div style="margin-bottom:1.5rem;">
+          <div style="display:flex;justify-content:space-between;font-size:0.82rem;font-weight:600;margin-bottom:0.4rem;"><span>Budget Realism</span><span>20%</span></div>
+          <div style="height:8px;background:var(--border);border-radius:4px;overflow:hidden;"><div style="width:20%;height:100%;background:var(--blue);border-radius:4px;"></div></div>
+        </div>
+        <div style="margin-bottom:1.5rem;">
+          <div style="display:flex;justify-content:space-between;font-size:0.82rem;font-weight:600;margin-bottom:0.4rem;"><span>Technical Proof</span><span>15%</span></div>
+          <div style="height:8px;background:var(--border);border-radius:4px;overflow:hidden;"><div style="width:15%;height:100%;background:var(--teal);border-radius:4px;"></div></div>
+        </div>
+        <div style="margin-bottom:1.5rem;">
+          <div style="display:flex;justify-content:space-between;font-size:0.82rem;font-weight:600;margin-bottom:0.4rem;"><span>Live Floor Performance</span><span>15%</span></div>
+          <div style="height:8px;background:var(--border);border-radius:4px;overflow:hidden;"><div style="width:15%;height:100%;background:var(--amber);border-radius:4px;"></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:1rem;border-left:4px solid var(--teal);">
+          <h4 style="font-size:0.88rem;font-weight:700;color:var(--teal);">Tier 1 — Top 20%</h4>
+          <p style="font-size:0.82rem;color:var(--text-sec);margin-top:0.3rem;">Ready. Priority placement, mentor introductions, post-event support.</p>
+        </div>
+        <div class="card" style="margin-bottom:1rem;border-left:4px solid var(--amber);">
+          <h4 style="font-size:0.88rem;font-weight:700;color:var(--amber);">Tier 2 — Middle 40%</h4>
+          <p style="font-size:0.82rem;color:var(--text-sec);margin-top:0.3rem;">Needs work. Specific feedback. Invitation to next cycle.</p>
+        </div>
+        <div class="card" style="border-left:4px solid var(--red);">
+          <h4 style="font-size:0.88rem;font-weight:700;color:var(--red);">Tier 3 — Bottom 40%</h4>
+          <p style="font-size:0.82rem;color:var(--text-sec);margin-top:0.3rem;">Not ready. Honest assessment. Better to know now than waste $20K+ at CES.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== OUTCOMES ==================== -->
+<div class="page" id="page-outcomes">
+  <div class="section" style="padding-top:8rem;">
+    <div class="reveal">
+      <div class="section-label">What You Walk Away With</div>
+      <h1 class="section-heading">Not skills. Deliverables.</h1>
+      <p class="section-sub">Every item on this list is something you take home and use at your next international event.</p>
+    </div>
+    <div class="g2 reveal" style="margin-top:3rem;gap:2rem;">
+      <div class="promise-item">
+        <div class="promise-icon">✓</div>
+        <div class="promise-text"><h4>A tested pitch</h4><p>Your pitch, pressure-tested against 4+ international buyer personas. Not a pitch deck review — a live performance that survived hostile feedback.</p></div>
+      </div>
+      <div class="promise-item">
+        <div class="promise-icon">✓</div>
+        <div class="promise-text"><h4>A cold email that works</h4><p>Your outreach script, reviewed and rewritten by an international sales executive. Subject lines, personalization, and calls to action that get replies.</p></div>
+      </div>
+      <div class="promise-item">
+        <div class="promise-icon">✓</div>
+        <div class="promise-text"><h4>25 qualified buyers</h4><p>A target list of 25 international contacts for your next event. Each entry: name, title, company, relevance, and a personalized outreach message.</p></div>
+      </div>
+      <div class="promise-item">
+        <div class="promise-icon">✓</div>
+        <div class="promise-text"><h4>50 emails actually sent</h4><p>On Show Day, you send 50 real outreach emails to real buyers. Not hypothetical. Drafted, mentor-reviewed, and sent before you leave the building.</p></div>
+      </div>
+      <div class="promise-item">
+        <div class="promise-icon">✓</div>
+        <div class="promise-text"><h4>Rebuilt materials</h4><p>Your one-pager and pitch deck, rebuilt after surviving 4 rounds of international mentor feedback at the Materials Round Robin.</p></div>
+      </div>
+      <div class="promise-item">
+        <div class="promise-icon">✓</div>
+        <div class="promise-text"><h4>Cross-cultural playbook</h4><p>Specific understanding of how German, French, Nordic, and American buyers evaluate trust and make purchase decisions differently.</p></div>
+      </div>
+      <div class="promise-item">
+        <div class="promise-icon">✓</div>
+        <div class="promise-text"><h4>Team communication plan</h4><p>Who pitches, who runs the meeting, who follows up. After the CEO Communication Shift exercise, your team knows its roles.</p></div>
+      </div>
+      <div class="promise-item">
+        <div class="promise-icon">✓</div>
+        <div class="promise-text"><h4>A readiness score</h4><p>CES/VivaTech readiness score across 5 categories with specific improvement actions. You know exactly where you stand.</p></div>
+      </div>
+      <div class="promise-item">
+        <div class="promise-icon">✔</div>
+        <div class="promise-text"><h4>A working AI sales pipeline</h4><p>Browser agent configured for LinkedIn prospecting. Lead enrichment flow. Automated email sequences. The same stack a16z founders use to book meetings with zero sales hires — built during class, not after.</p></div>
+      </div>
+      <div class="promise-item">
+        <div class="promise-icon">✔</div>
+        <div class="promise-text"><h4>Trust artifacts for your market</h4><p>The compliance docs, security summaries, case study templates, or pilot proposals your specific buyer segment needs to see before they’ll engage. Produced with AI in-session.</p></div>
+      </div>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <div class="reveal" style="margin-top:4rem;">
+      <div class="section-label">From Past Cohorts</div>
+      <h2 class="section-heading">What graduates say.</h2>
+    </div>
+    <div class="g2 reveal" style="margin-top:2rem;align-items:start;">
+      <div>
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/praise%20from%20startup.jpg" alt="LinkedIn message from Nicolas Fahier, CTO at IIST Inc., praising the workshop" style="width:100%;border-radius:14px;box-shadow:var(--sh-md);">
+        <p style="font-size:0.72rem;color:var(--text-muted);margin-top:0.75rem;">Nicolas Fahier · CTO, IIST Inc. | Trust & Security Hardware Solutions · After CES 2026 Bootcamp</p>
+      </div>
+      <div>
+        <div class="quote-card" style="margin-bottom:1.25rem;">
+          <div class="quote-text">I was angry after the first day. Budget torn apart. CEO told to stop talking. But on the CES floor two months later, I understood. We booked 11 meetings in 3 days. Year before, we got zero.</div>
+          <div class="quote-attr">— S.L., CEO · Smart Agriculture IoT · CES 2026 Cohort</div>
+        </div>
+        <div class="quote-card" style="margin-bottom:1.25rem;">
+          <div class="quote-text">The Forbidden Words drill changed everything. Didn't realize I was pitching like a factory until a German mentor said: "I'm not your customer. The driver is." That line rewired my entire pitch.</div>
+          <div class="quote-attr">— J.C., Founder · Industrial Vision Systems · VivaTech 2025 Cohort</div>
+        </div>
+        <div class="quote-card" style="margin-bottom:1.25rem;">
+          <div class="quote-text">We've been to CES three times. First two, came home with business cards and nothing else. This time, BD lead ran meetings while I focused on strategy. Left with two signed LOIs.</div>
+          <div class="quote-attr">— T.W., CEO · Medical Device Startup · CES 2025 Cohort</div>
+        </div>
+        <div class="quote-card">
+          <div class="quote-text">Came in thinking I needed a better pitch deck. Left realizing I needed to let my co-founder do the talking. Hardest lesson of my career. Also most valuable.</div>
+          <div class="quote-attr">— K.H., Co-Founder · AI Security Platform · VivaTech 2025 Cohort</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== TRACK RECORD ==================== -->
+<div class="page" id="page-track">
+  <div class="section" style="padding-top:8rem;">
+    <div class="reveal">
+      <div class="section-label">Who We Are</div>
+      <h1 class="section-heading">14 years building programs<br>for Taiwan's startups.</h1>
+      <p class="section-sub">Mosaic Venture Lab has been in this ecosystem since 2011, originally as Yushan Ventures. This is not a new venture deciding to work with startups.</p>
+    </div>
+    <div class="g2 reveal" style="margin-top:3rem;">
+      <div>
+        <div class="tl-item" style="margin-bottom:2rem;">
+          <div class="tl-year">2011-2013</div>
+          <div class="tl-title">Startup Weekend Taiwan <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/startup-weekend-vector-logo.png" alt="SW" class="corp-logo" style="height:18px;object-fit:contain;"></div>
+          <div class="tl-desc">Co-founded Yushan Ventures in Taipei. Introduced Startup Weekend to Taiwan — events at Google Taiwan, Microsoft Taiwan, and top universities in Hsinchu, Tainan, Kaohsiung, Taipei.</div>
+        </div>
+        <div class="tl-item" style="margin-bottom:2rem;">
+          <div class="tl-year">2012-2018</div>
+          <div class="tl-title">APEC Accelerator Network O2O <img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20130%2040'%3E%3Ccircle%20cx='20'%20cy='20'%20r='14'%20fill='none'%20stroke='%230054A6'%20stroke-width='1.5'/%3E%3Cellipse%20cx='20'%20cy='20'%20rx='8'%20ry='14'%20fill='none'%20stroke='%230054A6'%20stroke-width='0.8'/%3E%3Cline%20x1='6'%20y1='14'%20x2='34'%20y2='14'%20stroke='%230054A6'%20stroke-width='0.6'/%3E%3Cline%20x1='6'%20y1='20'%20x2='34'%20y2='20'%20stroke='%230054A6'%20stroke-width='0.6'/%3E%3Cline%20x1='6'%20y1='26'%20x2='34'%20y2='26'%20stroke='%230054A6'%20stroke-width='0.6'/%3E%3Ctext%20x='42'%20y='26'%20font-family='Helvetica%20Neue,Helvetica,Arial,sans-serif'%20font-weight='700'%20font-size='20'%20letter-spacing='2'%20fill='%230054A6'%3EAPEC%3C/text%3E%3C/svg%3E" alt="APEC" class="corp-logo" style="height:28px;"></div>
+          <div class="tl-desc">Conceptualized and co-managed the APEC Accelerator Network with Taiwan's Ministry of Economic Affairs (MoEA/SMEA). Startup pitch events across APEC economies for 6 years.</div>
+        </div>
+        <div class="tl-item" style="margin-bottom:2rem;">
+          <div class="tl-year">2015-PRESENT</div>
+          <div class="tl-title">Volkswagen Group / Audi <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M12%200C5.36%200%200%205.36%200%2012S5.36%2024%2012%2024%2024%2018.64%2024%2012%2018.64%200%2012%200M12%201.41C13.2%201.41%2014.36%201.63%2015.43%202L12.13%209.13C12.09%209.17%2012.09%209.26%2012%209.26S11.91%209.17%2011.87%209.13L8.57%202C9.64%201.63%2010.8%201.42%2012%201.42M6.9%202.74L10.72%2010.97C10.8%2011.14%2010.89%2011.19%2011%2011.19H13C13.12%2011.19%2013.2%2011.14%2013.29%2010.97L17.06%202.74C18.64%203.64%2020%204.93%2020.96%206.47L15.6%2016.84C15.56%2016.93%2015.5%2016.97%2015.47%2016.97C15.39%2016.97%2015.39%2016.89%2015.34%2016.84L13.29%2012.3C13.2%2012.13%2013.12%2012.09%2013%2012.09H11C10.89%2012.09%2010.8%2012.13%2010.71%2012.3L8.66%2016.84C8.61%2016.89%208.62%2016.97%208.53%2016.97C8.44%2016.97%208.44%2016.89%208.4%2016.84L3%206.47C3.94%204.93%205.32%203.64%206.9%202.74M2.06%208.53L8.23%2020.53C8.31%2020.7%208.4%2020.83%208.62%2020.83C8.83%2020.83%208.91%2020.7%209%2020.53L11.87%2014.14C11.91%2014.06%2011.96%2014%2012%2014C12.09%2014%2012.09%2014.1%2012.13%2014.14L15.04%2020.53C15.13%2020.7%2015.21%2020.83%2015.43%2020.83C15.64%2020.83%2015.73%2020.7%2015.81%2020.53L22%208.53C22.37%209.6%2022.59%2010.76%2022.59%2012C22.54%2017.79%2017.79%2022.59%2012%2022.59C6.21%2022.59%201.46%2017.79%201.46%2012C1.46%2010.8%201.67%209.65%202.06%208.53Z'%20fill='%23888888'/></svg>" alt="VW" class="corp-logo" style="height:16px;"> <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M19.848%2C7.848c-0.992%2C0-1.902%2C0.348-2.616%2C0.928c-0.714-0.58-1.624-0.928-2.616-0.928%20c-0.992%2C0-1.902%2C0.348-2.616%2C0.928c-0.714-0.58-1.624-0.928-2.616-0.928c-0.992%2C0-1.902%2C0.348-2.616%2C0.928%20c-0.714-0.58-1.624-0.928-2.616-0.928C1.859%2C7.848%2C0%2C9.707%2C0%2C12s1.859%2C4.152%2C4.152%2C4.152c0.992%2C0%2C1.902-0.348%2C2.616-0.928%20c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928c0.992%2C0%2C1.902-0.348%2C2.616-0.928c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928%20c0.992%2C0%2C1.902-0.348%2C2.616-0.928c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928C22.141%2C16.152%2C24%2C14.293%2C24%2C12S22.141%2C7.848%2C19.848%2C7.848z%20M17.232%2C13.866c-0.376-0.526-0.598-1.17-0.598-1.866c0-0.696%2C0.222-1.34%2C0.598-1.866c0.376%2C0.526%2C0.598%2C1.17%2C0.598%2C1.866%20C17.83%2C12.696%2C17.608%2C13.34%2C17.232%2C13.866z%20M12%2C13.866c-0.376-0.526-0.598-1.17-0.598-1.866c0-0.696%2C0.222-1.34%2C0.598-1.866%20c0.376%2C0.526%2C0.598%2C1.17%2C0.598%2C1.866C12.598%2C12.696%2C12.376%2C13.34%2C12%2C13.866z%20M6.768%2C13.866C6.392%2C13.34%2C6.17%2C12.696%2C6.17%2C12%20c0-0.696%2C0.222-1.34%2C0.598-1.866C7.144%2C10.66%2C7.366%2C11.304%2C7.366%2C12C7.366%2C12.696%2C7.144%2C13.34%2C6.768%2C13.866z%20M0.938%2C12%20c0-1.775%2C1.439-3.214%2C3.214-3.214c0.736%2C0%2C1.414%2C0.248%2C1.956%2C0.665C5.56%2C10.154%2C5.232%2C11.039%2C5.232%2C12%20c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665C2.377%2C15.214%2C0.938%2C13.775%2C0.938%2C12z%20M7.428%2C14.549%20C7.976%2C13.846%2C8.304%2C12.961%2C8.304%2C12c0-0.961-0.328-1.846-0.876-2.549c0.542-0.416%2C1.22-0.665%2C1.956-0.665%20c0.736%2C0%2C1.414%2C0.248%2C1.956%2C0.665c-0.549%2C0.704-0.876%2C1.588-0.876%2C2.549c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549%20c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665C8.648%2C15.214%2C7.97%2C14.966%2C7.428%2C14.549z%20M12.66%2C14.549c0.549-0.704%2C0.876-1.588%2C0.876-2.549%20c0-0.961-0.328-1.846-0.876-2.55c0.542-0.416%2C1.22-0.665%2C1.956-0.665s1.414%2C0.248%2C1.956%2C0.665%20c-0.549%2C0.704-0.876%2C1.588-0.876%2C2.549c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665%20C13.88%2C15.214%2C13.202%2C14.966%2C12.66%2C14.549z%20M19.848%2C15.214c-0.736%2C0-1.414-0.248-1.956-0.665c0.548-0.704%2C0.876-1.588%2C0.876-2.549%20c0-0.961-0.328-1.846-0.876-2.549c0.542-0.416%2C1.22-0.665%2C1.956-0.665c1.775%2C0%2C3.214%2C1.439%2C3.214%2C3.214%20S21.623%2C15.214%2C19.848%2C15.214z'%20fill='%23888888'/></svg>" alt="Audi" class="corp-logo" style="height:18px;"></div>
+          <div class="tl-desc">Technology scouting partner for Volkswagen Group. Added Audi as innovation partner. Active supplier network across 25+ countries, 5 continents. Audi Innovation Award program in Taiwan.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2018</div>
+          <div class="tl-title">Mosaic Venture Lab <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M19.848%2C7.848c-0.992%2C0-1.902%2C0.348-2.616%2C0.928c-0.714-0.58-1.624-0.928-2.616-0.928%20c-0.992%2C0-1.902%2C0.348-2.616%2C0.928c-0.714-0.58-1.624-0.928-2.616-0.928c-0.992%2C0-1.902%2C0.348-2.616%2C0.928%20c-0.714-0.58-1.624-0.928-2.616-0.928C1.859%2C7.848%2C0%2C9.707%2C0%2C12s1.859%2C4.152%2C4.152%2C4.152c0.992%2C0%2C1.902-0.348%2C2.616-0.928%20c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928c0.992%2C0%2C1.902-0.348%2C2.616-0.928c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928%20c0.992%2C0%2C1.902-0.348%2C2.616-0.928c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928C22.141%2C16.152%2C24%2C14.293%2C24%2C12S22.141%2C7.848%2C19.848%2C7.848z%20M17.232%2C13.866c-0.376-0.526-0.598-1.17-0.598-1.866c0-0.696%2C0.222-1.34%2C0.598-1.866c0.376%2C0.526%2C0.598%2C1.17%2C0.598%2C1.866%20C17.83%2C12.696%2C17.608%2C13.34%2C17.232%2C13.866z%20M12%2C13.866c-0.376-0.526-0.598-1.17-0.598-1.866c0-0.696%2C0.222-1.34%2C0.598-1.866%20c0.376%2C0.526%2C0.598%2C1.17%2C0.598%2C1.866C12.598%2C12.696%2C12.376%2C13.34%2C12%2C13.866z%20M6.768%2C13.866C6.392%2C13.34%2C6.17%2C12.696%2C6.17%2C12%20c0-0.696%2C0.222-1.34%2C0.598-1.866C7.144%2C10.66%2C7.366%2C11.304%2C7.366%2C12C7.366%2C12.696%2C7.144%2C13.34%2C6.768%2C13.866z%20M0.938%2C12%20c0-1.775%2C1.439-3.214%2C3.214-3.214c0.736%2C0%2C1.414%2C0.248%2C1.956%2C0.665C5.56%2C10.154%2C5.232%2C11.039%2C5.232%2C12%20c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665C2.377%2C15.214%2C0.938%2C13.775%2C0.938%2C12z%20M7.428%2C14.549%20C7.976%2C13.846%2C8.304%2C12.961%2C8.304%2C12c0-0.961-0.328-1.846-0.876-2.549c0.542-0.416%2C1.22-0.665%2C1.956-0.665%20c0.736%2C0%2C1.414%2C0.248%2C1.956%2C0.665c-0.549%2C0.704-0.876%2C1.588-0.876%2C2.549c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549%20c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665C8.648%2C15.214%2C7.97%2C14.966%2C7.428%2C14.549z%20M12.66%2C14.549c0.549-0.704%2C0.876-1.588%2C0.876-2.549%20c0-0.961-0.328-1.846-0.876-2.55c0.542-0.416%2C1.22-0.665%2C1.956-0.665s1.414%2C0.248%2C1.956%2C0.665%20c-0.549%2C0.704-0.876%2C1.588-0.876%2C2.549c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665%20C13.88%2C15.214%2C13.202%2C14.966%2C12.66%2C14.549z%20M19.848%2C15.214c-0.736%2C0-1.414-0.248-1.956-0.665c0.548-0.704%2C0.876-1.588%2C0.876-2.549%20c0-0.961-0.328-1.846-0.876-2.549c0.542-0.416%2C1.22-0.665%2C1.956-0.665c1.775%2C0%2C3.214%2C1.439%2C3.214%2C3.214%20S21.623%2C15.214%2C19.848%2C15.214z'%20fill='%23888888'/></svg>" alt="Audi" class="corp-logo" style="height:18px;"> <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/continental.png" alt="Continental" class="corp-logo" style="height:26px;object-fit:contain;"></div>
+          <div class="tl-desc">Established as a deep-tech accelerator partnered with Audi AG, Continental AG. Focus on East Asian innovation for European automotive and industrial leaders.</div>
+        </div>
+      </div>
+      <div>
+        <div class="tl-item" style="margin-bottom:2rem;">
+          <div class="tl-year">2023</div>
+          <div class="tl-title">LITEON+ at TTA <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Liteon.png" alt="LITEON" class="corp-logo" style="height:24px;object-fit:contain;"></div>
+          <div class="tl-desc">LITEON+ Startup Platform at Taiwan Tech Arena — co-working, training, and demo day for hardware startups.</div>
+        </div>
+        <div class="tl-item" style="margin-bottom:2rem;">
+          <div class="tl-year">2024</div>
+          <div class="tl-title">TTA × CES 2025 Training</div>
+          <div class="tl-desc">Trained startups on behalf of TTA for CES 2025. 2-day bootcamp: keynotes on cross-cultural communication and CES BD strategy, 3 rotating workshop tracks, competitive simulation.</div>
+        </div>
+        <div class="tl-item" style="margin-bottom:2rem;">
+          <div class="tl-year">2025</div>
+          <div class="tl-title">CES 2026 + VivaTech + ITRI</div>
+          <div class="tl-desc">180+ startups trained for CES 2026 and VivaTech 2025. 3-session VivaTech series (virtual assessment, bootcamp prep, full-day simulation with 4 rotation tracks). Half-day professor training for ITRI on patent commercialization.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2026</div>
+          <div class="tl-title">SELL GLOBAL</div>
+          <div class="tl-desc">Everything we've learned, distilled into a structured 8-week program. The first cross-cultural sales training designed specifically for Taiwanese technology startups.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EVENT PHOTOS -->
+    <div class="reveal" style="margin-top:4rem;">
+      <div class="section-label">In Action</div>
+      <h2 class="section-heading">From the training floor.</h2>
+    </div>
+    <div class="g3 reveal" style="margin-top:2rem;">
+      <div class="event-card">
+        <div class="event-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/CES%202025%20Bootcamp%201.jpg" alt="CES 2025 Bootcamp"></div>
+        <div class="event-overlay"><h4>CES 2025 Bootcamp</h4><p>2-day intensive at TTA, Taipei · 2024</p></div>
+      </div>
+      <div class="event-card">
+        <div class="event-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/VivaTech%202025%20Workshop%201.jpg" alt="VivaTech 2025 Workshop"></div>
+        <div class="event-overlay"><h4>VivaTech 2025 Workshop</h4><p>4-rotation bootcamp · 30 startups · 2025</p></div>
+      </div>
+      <div class="event-card">
+        <div class="event-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/CES%202026%20War%20Games%201.jpg" alt="CES 2026 War Games"></div>
+        <div class="event-overlay"><h4>CES 2026 War Games</h4><p>Competitive simulation day · 2025</p></div>
+      </div>
+      <div class="event-card">
+        <div class="event-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/role%20playing%201.JPG" alt="Mentor Role-Play"></div>
+        <div class="event-overlay"><h4>Mentor Role-Play</h4><p>Adversarial buyer personas · TTA</p></div>
+      </div>
+      <div class="event-card">
+        <div class="event-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Pitch%20under%20pressure%201.jpg" alt="Pitch Under Pressure"></div>
+        <div class="event-overlay"><h4>Pitch Under Pressure</h4><p>Materials clinic · Round Robin format</p></div>
+      </div>
+      <div class="event-card">
+        <div class="event-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/TTA%201.jpg" alt="Taiwan Tech Arena"></div>
+        <div class="event-overlay"><h4>Taiwan Tech Arena</h4><p>Home base · Taipei</p></div>
+      </div>
+    </div>
+
+    <!-- THE BIGGER PICTURE -->
+    <div class="reveal" style="margin-top:4rem;">
+      <div class="section-label">The Bigger Picture</div>
+      <h2 class="section-heading">Why this program exists.</h2>
+      <div class="infographic-frame" style="margin-top:1.5rem;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/why%20this%20program%20exists.png" alt="Why This Program Exists — systemic failure patterns in Taiwan's startup ecosystem">
+      </div>
+      <p style="font-size:0.68rem;color:var(--text-muted);text-align:center;margin-top:0.75rem;font-style:italic;">The systemic patterns behind why strong Taiwanese technology struggles in global markets.</p>
+    </div>
+
+    <!-- WHY MOSAIC -->
+    <div class="reveal" style="margin-top:4rem;padding:3rem;background:var(--bg-warm);border-radius:16px;">
+      <h3 style="font-family:'DM Serif Display',serif;font-size:1.4rem;margin-bottom:1rem;">Why us.</h3>
+      <p style="font-size:0.95rem;line-height:1.8;color:var(--text-sec);">When we tell a startup their budget is unrealistic or their pitch sounds like a supplier, it comes from 14 years of watching what works — and what doesn't — in the gap between Taiwanese technology and global markets. We introduced Startup Weekend to Taiwan. We built the APEC Accelerator Network with the government. We ran soft-landing programs for III. We trained professors for ITRI. We manage technology scouting for Volkswagen Group and Audi. SELL GLOBAL is the structured version of everything we've learned.</p>
+    </div>
+    <!-- PARTNER LOGOS -->
+    <div style="margin-top:3rem;">
+      <div class="logo-strip-label">Programs & Partners</div>
+      <div class="logo-strip">
+      <img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20130%2040'%3E%3Ccircle%20cx='20'%20cy='20'%20r='14'%20fill='none'%20stroke='%230054A6'%20stroke-width='1.5'/%3E%3Cellipse%20cx='20'%20cy='20'%20rx='8'%20ry='14'%20fill='none'%20stroke='%230054A6'%20stroke-width='0.8'/%3E%3Cline%20x1='6'%20y1='14'%20x2='34'%20y2='14'%20stroke='%230054A6'%20stroke-width='0.6'/%3E%3Cline%20x1='6'%20y1='20'%20x2='34'%20y2='20'%20stroke='%230054A6'%20stroke-width='0.6'/%3E%3Cline%20x1='6'%20y1='26'%20x2='34'%20y2='26'%20stroke='%230054A6'%20stroke-width='0.6'/%3E%3Ctext%20x='42'%20y='26'%20font-family='Helvetica%20Neue,Helvetica,Arial,sans-serif'%20font-weight='700'%20font-size='20'%20letter-spacing='2'%20fill='%230054A6'%3EAPEC%3C/text%3E%3C/svg%3E" alt="APEC" class="corp-logo" style="height:28px;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/startup-weekend-vector-logo.png" alt="Startup Weekend" class="corp-logo" style="height:28px;object-fit:contain;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/TTA.jpg" alt="TTA" class="corp-logo" style="height:30px;object-fit:contain;">
+        <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M12%200C5.36%200%200%205.36%200%2012S5.36%2024%2012%2024%2024%2018.64%2024%2012%2018.64%200%2012%200M12%201.41C13.2%201.41%2014.36%201.63%2015.43%202L12.13%209.13C12.09%209.17%2012.09%209.26%2012%209.26S11.91%209.17%2011.87%209.13L8.57%202C9.64%201.63%2010.8%201.42%2012%201.42M6.9%202.74L10.72%2010.97C10.8%2011.14%2010.89%2011.19%2011%2011.19H13C13.12%2011.19%2013.2%2011.14%2013.29%2010.97L17.06%202.74C18.64%203.64%2020%204.93%2020.96%206.47L15.6%2016.84C15.56%2016.93%2015.5%2016.97%2015.47%2016.97C15.39%2016.97%2015.39%2016.89%2015.34%2016.84L13.29%2012.3C13.2%2012.13%2013.12%2012.09%2013%2012.09H11C10.89%2012.09%2010.8%2012.13%2010.71%2012.3L8.66%2016.84C8.61%2016.89%208.62%2016.97%208.53%2016.97C8.44%2016.97%208.44%2016.89%208.4%2016.84L3%206.47C3.94%204.93%205.32%203.64%206.9%202.74M2.06%208.53L8.23%2020.53C8.31%2020.7%208.4%2020.83%208.62%2020.83C8.83%2020.83%208.91%2020.7%209%2020.53L11.87%2014.14C11.91%2014.06%2011.96%2014%2012%2014C12.09%2014%2012.09%2014.1%2012.13%2014.14L15.04%2020.53C15.13%2020.7%2015.21%2020.83%2015.43%2020.83C15.64%2020.83%2015.73%2020.7%2015.81%2020.53L22%208.53C22.37%209.6%2022.59%2010.76%2022.59%2012C22.54%2017.79%2017.79%2022.59%2012%2022.59C6.21%2022.59%201.46%2017.79%201.46%2012C1.46%2010.8%201.67%209.65%202.06%208.53Z'%20fill='%23888888'/></svg>" alt="Volkswagen" class="corp-logo" style="height:30px;">
+        <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M19.848%2C7.848c-0.992%2C0-1.902%2C0.348-2.616%2C0.928c-0.714-0.58-1.624-0.928-2.616-0.928%20c-0.992%2C0-1.902%2C0.348-2.616%2C0.928c-0.714-0.58-1.624-0.928-2.616-0.928c-0.992%2C0-1.902%2C0.348-2.616%2C0.928%20c-0.714-0.58-1.624-0.928-2.616-0.928C1.859%2C7.848%2C0%2C9.707%2C0%2C12s1.859%2C4.152%2C4.152%2C4.152c0.992%2C0%2C1.902-0.348%2C2.616-0.928%20c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928c0.992%2C0%2C1.902-0.348%2C2.616-0.928c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928%20c0.992%2C0%2C1.902-0.348%2C2.616-0.928c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928C22.141%2C16.152%2C24%2C14.293%2C24%2C12S22.141%2C7.848%2C19.848%2C7.848z%20M17.232%2C13.866c-0.376-0.526-0.598-1.17-0.598-1.866c0-0.696%2C0.222-1.34%2C0.598-1.866c0.376%2C0.526%2C0.598%2C1.17%2C0.598%2C1.866%20C17.83%2C12.696%2C17.608%2C13.34%2C17.232%2C13.866z%20M12%2C13.866c-0.376-0.526-0.598-1.17-0.598-1.866c0-0.696%2C0.222-1.34%2C0.598-1.866%20c0.376%2C0.526%2C0.598%2C1.17%2C0.598%2C1.866C12.598%2C12.696%2C12.376%2C13.34%2C12%2C13.866z%20M6.768%2C13.866C6.392%2C13.34%2C6.17%2C12.696%2C6.17%2C12%20c0-0.696%2C0.222-1.34%2C0.598-1.866C7.144%2C10.66%2C7.366%2C11.304%2C7.366%2C12C7.366%2C12.696%2C7.144%2C13.34%2C6.768%2C13.866z%20M0.938%2C12%20c0-1.775%2C1.439-3.214%2C3.214-3.214c0.736%2C0%2C1.414%2C0.248%2C1.956%2C0.665C5.56%2C10.154%2C5.232%2C11.039%2C5.232%2C12%20c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665C2.377%2C15.214%2C0.938%2C13.775%2C0.938%2C12z%20M7.428%2C14.549%20C7.976%2C13.846%2C8.304%2C12.961%2C8.304%2C12c0-0.961-0.328-1.846-0.876-2.549c0.542-0.416%2C1.22-0.665%2C1.956-0.665%20c0.736%2C0%2C1.414%2C0.248%2C1.956%2C0.665c-0.549%2C0.704-0.876%2C1.588-0.876%2C2.549c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549%20c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665C8.648%2C15.214%2C7.97%2C14.966%2C7.428%2C14.549z%20M12.66%2C14.549c0.549-0.704%2C0.876-1.588%2C0.876-2.549%20c0-0.961-0.328-1.846-0.876-2.55c0.542-0.416%2C1.22-0.665%2C1.956-0.665s1.414%2C0.248%2C1.956%2C0.665%20c-0.549%2C0.704-0.876%2C1.588-0.876%2C2.549c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665%20C13.88%2C15.214%2C13.202%2C14.966%2C12.66%2C14.549z%20M19.848%2C15.214c-0.736%2C0-1.414-0.248-1.956-0.665c0.548-0.704%2C0.876-1.588%2C0.876-2.549%20c0-0.961-0.328-1.846-0.876-2.549c0.542-0.416%2C1.22-0.665%2C1.956-0.665c1.775%2C0%2C3.214%2C1.439%2C3.214%2C3.214%20S21.623%2C15.214%2C19.848%2C15.214z'%20fill='%23888888'/></svg>" alt="Audi" class="corp-logo" style="height:32px;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/continental.png" alt="Continental" class="corp-logo" style="height:28px;object-fit:contain;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/ITRI.png" alt="ITRI" class="corp-logo" style="height:28px;object-fit:contain;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Liteon.png" alt="LITEON" class="corp-logo" style="height:28px;object-fit:contain;">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== MENTORS ==================== -->
+<div class="page" id="page-mentors">
+  <div class="section" style="padding-top:8rem;">
+    <!-- MENTOR COMPANY LOGOS -->
+    <div style="margin-bottom:3rem;">
+      <div class="logo-strip-label">Our mentors have worked at</div>
+      <div class="logo-strip">
+      <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M12.48%2010.92v3.28h7.84c-.24%201.84-.853%203.187-1.787%204.133-1.147%201.147-2.933%202.4-6.053%202.4-4.827%200-8.6-3.893-8.6-8.72s3.773-8.72%208.6-8.72c2.6%200%204.507%201.027%205.907%202.347l2.307-2.307C18.747%201.44%2016.133%200%2012.48%200%205.867%200%20.307%205.387.307%2012s5.56%2012%2012.173%2012c3.573%200%206.267-1.173%208.373-3.36%202.16-2.16%202.84-5.213%202.84-7.667%200-.76-.053-1.467-.173-2.053H12.48z'%20fill='%23888888'/></svg>" alt="Google" class="corp-logo" style="height:28px;">
+        <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M19.848%2C7.848c-0.992%2C0-1.902%2C0.348-2.616%2C0.928c-0.714-0.58-1.624-0.928-2.616-0.928%20c-0.992%2C0-1.902%2C0.348-2.616%2C0.928c-0.714-0.58-1.624-0.928-2.616-0.928c-0.992%2C0-1.902%2C0.348-2.616%2C0.928%20c-0.714-0.58-1.624-0.928-2.616-0.928C1.859%2C7.848%2C0%2C9.707%2C0%2C12s1.859%2C4.152%2C4.152%2C4.152c0.992%2C0%2C1.902-0.348%2C2.616-0.928%20c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928c0.992%2C0%2C1.902-0.348%2C2.616-0.928c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928%20c0.992%2C0%2C1.902-0.348%2C2.616-0.928c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928C22.141%2C16.152%2C24%2C14.293%2C24%2C12S22.141%2C7.848%2C19.848%2C7.848z%20M17.232%2C13.866c-0.376-0.526-0.598-1.17-0.598-1.866c0-0.696%2C0.222-1.34%2C0.598-1.866c0.376%2C0.526%2C0.598%2C1.17%2C0.598%2C1.866%20C17.83%2C12.696%2C17.608%2C13.34%2C17.232%2C13.866z%20M12%2C13.866c-0.376-0.526-0.598-1.17-0.598-1.866c0-0.696%2C0.222-1.34%2C0.598-1.866%20c0.376%2C0.526%2C0.598%2C1.17%2C0.598%2C1.866C12.598%2C12.696%2C12.376%2C13.34%2C12%2C13.866z%20M6.768%2C13.866C6.392%2C13.34%2C6.17%2C12.696%2C6.17%2C12%20c0-0.696%2C0.222-1.34%2C0.598-1.866C7.144%2C10.66%2C7.366%2C11.304%2C7.366%2C12C7.366%2C12.696%2C7.144%2C13.34%2C6.768%2C13.866z%20M0.938%2C12%20c0-1.775%2C1.439-3.214%2C3.214-3.214c0.736%2C0%2C1.414%2C0.248%2C1.956%2C0.665C5.56%2C10.154%2C5.232%2C11.039%2C5.232%2C12%20c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665C2.377%2C15.214%2C0.938%2C13.775%2C0.938%2C12z%20M7.428%2C14.549%20C7.976%2C13.846%2C8.304%2C12.961%2C8.304%2C12c0-0.961-0.328-1.846-0.876-2.549c0.542-0.416%2C1.22-0.665%2C1.956-0.665%20c0.736%2C0%2C1.414%2C0.248%2C1.956%2C0.665c-0.549%2C0.704-0.876%2C1.588-0.876%2C2.549c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549%20c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665C8.648%2C15.214%2C7.97%2C14.966%2C7.428%2C14.549z%20M12.66%2C14.549c0.549-0.704%2C0.876-1.588%2C0.876-2.549%20c0-0.961-0.328-1.846-0.876-2.55c0.542-0.416%2C1.22-0.665%2C1.956-0.665s1.414%2C0.248%2C1.956%2C0.665%20c-0.549%2C0.704-0.876%2C1.588-0.876%2C2.549c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665%20C13.88%2C15.214%2C13.202%2C14.966%2C12.66%2C14.549z%20M19.848%2C15.214c-0.736%2C0-1.414-0.248-1.956-0.665c0.548-0.704%2C0.876-1.588%2C0.876-2.549%20c0-0.961-0.328-1.846-0.876-2.549c0.542-0.416%2C1.22-0.665%2C1.956-0.665c1.775%2C0%2C3.214%2C1.439%2C3.214%2C3.214%20S21.623%2C15.214%2C19.848%2C15.214z'%20fill='%23888888'/></svg>" alt="Audi" class="corp-logo" style="height:34px;">
+        <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M12%200C5.36%200%200%205.36%200%2012S5.36%2024%2012%2024%2024%2018.64%2024%2012%2018.64%200%2012%200M12%201.41C13.2%201.41%2014.36%201.63%2015.43%202L12.13%209.13C12.09%209.17%2012.09%209.26%2012%209.26S11.91%209.17%2011.87%209.13L8.57%202C9.64%201.63%2010.8%201.42%2012%201.42M6.9%202.74L10.72%2010.97C10.8%2011.14%2010.89%2011.19%2011%2011.19H13C13.12%2011.19%2013.2%2011.14%2013.29%2010.97L17.06%202.74C18.64%203.64%2020%204.93%2020.96%206.47L15.6%2016.84C15.56%2016.93%2015.5%2016.97%2015.47%2016.97C15.39%2016.97%2015.39%2016.89%2015.34%2016.84L13.29%2012.3C13.2%2012.13%2013.12%2012.09%2013%2012.09H11C10.89%2012.09%2010.8%2012.13%2010.71%2012.3L8.66%2016.84C8.61%2016.89%208.62%2016.97%208.53%2016.97C8.44%2016.97%208.44%2016.89%208.4%2016.84L3%206.47C3.94%204.93%205.32%203.64%206.9%202.74M2.06%208.53L8.23%2020.53C8.31%2020.7%208.4%2020.83%208.62%2020.83C8.83%2020.83%208.91%2020.7%209%2020.53L11.87%2014.14C11.91%2014.06%2011.96%2014%2012%2014C12.09%2014%2012.09%2014.1%2012.13%2014.14L15.04%2020.53C15.13%2020.7%2015.21%2020.83%2015.43%2020.83C15.64%2020.83%2015.73%2020.7%2015.81%2020.53L22%208.53C22.37%209.6%2022.59%2010.76%2022.59%2012C22.54%2017.79%2017.79%2022.59%2012%2022.59C6.21%2022.59%201.46%2017.79%201.46%2012C1.46%2010.8%201.67%209.65%202.06%208.53Z'%20fill='%23888888'/></svg>" alt="Volkswagen" class="corp-logo" style="height:32px;">
+        <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M17.963%2014.6V9.324h1.222v4.204h2.14v1.07h-3.362zm-9.784-3.288l2.98-2.292c.281.228.56.458.841.687l-2.827%202.14.611.535%202.827-2.216c.281.228.56.458.841.688a295.83%20295.83%200%200%201-2.827%202.216l.61.536%202.83-2.295-.001-1.986h1.223v4.204h2.216v1.07h-3.362v-1.987c-.995.763-1.987%201.529-2.981%202.292l-2.981-2.292c-.144.729-.653%201.36-1.312%201.694-.285.147-.597.24-.915.276-.183.022-.367.017-.551.017H3.516V9.325H5.69a2.544%202.544%200%200%201%201.563.557c.454.36.778.872.927%201.43m-3.516-.917v3.21l.953-.001a1.377%201.377%200%200%200%201.036-.523%201.74%201.74%200%200%200%20.182-1.889%201.494%201.494%200%200%200-.976-.766c-.166-.04-.338-.03-.507-.032h-.688zM11.82%200h.337a11.94%2011.94%200%200%201%205.405%201.373%2012.101%2012.101%200%200%201%204.126%203.557A11.93%2011.93%200%200%201%2024%2011.82v.36a11.963%2011.963%200%200%201-3.236%208.033A11.967%2011.967%200%200%201%2012.182%2024h-.361a11.993%2011.993%200%200%201-4.145-.806%2012.04%2012.04%200%200%201-4.274-2.836A12.057%2012.057%200%200%201%20.576%2015.67%2012.006%2012.006%200%200%201%200%2012.181v-.361a11.924%2011.924%200%200%201%201.992-6.396%2012.211%2012.211%200%200%201%204.71-4.172A11.875%2011.875%200%200%201%2011.82%200m-.153%201.23a10.724%2010.724%200%200%200-6.43%202.375%2010.78%2010.78%200%200%200-3.319%204.573%2010.858%2010.858%200%200%200%20.193%208.12%2010.788%2010.788%200%200%200%203.546%204.421%2010.698%2010.698%200%200%200%204.786%201.946c1.456.209%202.955.124%204.376-.26a10.756%2010.756%200%200%200%205.075-3.062%2010.742%2010.742%200%200%200%202.686-5.28%2010.915%2010.915%200%200%200-.122-4.682%2010.77%2010.77%200%200%200-7.098-7.626%2010.78%2010.78%200%200%200-3.693-.525z'%20fill='%23888888'/></svg>" alt="Dell" class="corp-logo" style="height:26px;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/EMC-Logo.png" alt="EMC" class="corp-logo" style="height:30px;object-fit:contain;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/continental.png" alt="Continental" class="corp-logo" style="height:28px;object-fit:contain;">
+        <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M12%200C5.373%200%200%205.373%200%2012s5.373%2012%2012%2012%2012-5.373%2012-12C24.002%205.375%2018.632.002%2012.007%200H12zm7.327%2018.065s-.581-2.627-1.528-4.197c-.514-.857-1.308-1.553-2.368-1.532-.745%200-1.399.423-2.2%201.553-.469.77-.882%201.573-1.235%202.403%200%200-.29-.675-.63-1.343a8.038%208.038%200%200%200-.605-1.049c-.804-1.13-1.455-1.539-2.2-1.553-1.049-.021-1.854.675-2.364%201.528-.948%201.574-1.528%204.197-1.528%204.197h-.864l4.606-15.12%203.56%2011.804.024.021.024-.021%203.56-11.804%204.61%2015.113h-.862z'%20fill='%23888888'/></svg>" alt="Motorola" class="corp-logo" style="height:30px;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/AWS.png" alt="AWS" class="corp-logo" style="height:30px;object-fit:contain;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/IBM.png" alt="IBM" class="corp-logo" style="height:30px;object-fit:contain;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/daimler.png" alt="Daimler" class="corp-logo" style="height:28px;object-fit:contain;">
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="section-label">Mentor Network</div>
+      <h1 class="section-heading">Not advisors. Buyers.</h1>
+      <p class="section-sub">Our mentors sit on the other side of the table. They know exactly what kills a deal because they've walked away from hundreds of them.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1.25rem;margin-top:3rem;" class="reveal mentor-grid">
+      <div class="mentor-card"><div class="mentor-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Christian.png" alt="Christian Walter" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Christian Walter</div><div class="mentor-role">CEO, RegionRise<br>Ex-Google Europe</div></div>
+      <div class="mentor-card"><div class="mentor-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Wilson.png" alt="Wilson Khoo" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Wilson Khoo</div><div class="mentor-role">Director, co-pace APAC<br>Continental AG</div></div>
+      <div class="mentor-card"><div class="mentor-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Pascal.png" alt="Pascal Viaud" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Pascal Viaud</div><div class="mentor-role">CEO, UBIK ltd.<br>La French Tech Taiwan</div></div>
+      <div class="mentor-card"><div class="mentor-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Chander%20Kant.png" alt="Chander Kant" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Chander Kant</div><div class="mentor-role">CEO, K Ventures<br>Former CEO, Zmanda</div></div>
+      <div class="mentor-card"><div class="mentor-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Mark%20Birch.png" alt="Mark Birch" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Mark Birch</div><div class="mentor-role">Founder, TribeROI<br>Ex-AWS Global Advocate</div></div>
+      <div class="mentor-card"><div class="mentor-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Ashley.png" alt="Ashley Hsueh" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Ashley Hsueh</div><div class="mentor-role">Management Consultant<br>Bain & Company</div></div>
+      <div class="mentor-card"><div class="mentor-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Volker%20Kaese_0.jpg" alt="Dr. Volker Kaese" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Dr. Volker Kaese</div><div class="mentor-role">CEO, Ingenev Mobility<br>Ex-Audi/VW Innovation</div></div>
+      <div class="mentor-card"><div class="mentor-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/deborah.jpg" alt="Deborah Magid" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Deborah Magid</div><div class="mentor-role">MD, NextStar Ventures<br>Ex-IBM Ventures</div></div>
+      <div class="mentor-card"><div class="mentor-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Shafeen.png" alt="Shafeen Charania" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Shafeen Charania</div><div class="mentor-role">COO, fluency<br>Ex-DXC Enterprise IT</div></div>
+      <div class="mentor-card"><div class="mentor-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Todd%20Lin_0.png" alt="Todd Lin" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Todd Lin</div><div class="mentor-role">Semiconductor & M&A<br>Ex-GE, Acer, Egis Tech</div></div>
+    </div>
+    
+    
+  </div>
+</div>
+
+<!-- ==================== APPLY ==================== -->
+<div class="page" id="page-apply">
+  <div class="section" style="padding-top:8rem;">
+    <div class="reveal">
+      <div class="section-label">Join the Next Cohort</div>
+      <h1 class="section-heading">You built something real.<br>Now learn to sell it the way<br>global buyers actually buy.</h1>
+    </div>
+
+    <div class="g2 reveal" style="margin-top:3rem;">
+      <div>
+        <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;margin-bottom:1.25rem;">Who should apply.</h3>
+        <div style="font-size:0.92rem;color:var(--text-sec);line-height:1.8;">
+          <p style="margin-bottom:0.75rem;"><strong>Track A (Companies):</strong> You have a working product. You have a team of 2+. You are planning to attend CES, VivaTech, or sell directly to European/American buyers. You've done local sales but international deals are stalling or not happening.</p>
+          <p><strong>Track B (Individuals):</strong> You're a student, recent graduate, or career-switcher interested in global entrepreneurship. You want to understand what international business actually requires before making career decisions based on incomplete information.</p>
+        </div>
+        <h3 style="font-family:'DM Serif Display',serif;font-size:1.3rem;margin:2rem 0 1rem;">Program details.</h3>
+        <div style="font-size:0.88rem;color:var(--text-sec);line-height:2;">
+          <p><strong>Duration:</strong> 8 weeks</p>
+          <p><strong>Format:</strong> 4 online sessions (90 min) + 4 in-person days (at TTA, Taipei)</p>
+          <p><strong>Cohort size:</strong> 20-30 companies (Track A) + 15-25 individuals (Track B)</p>
+          <p><strong>Investment:</strong> Subsidized program pricing. No equity taken. Contact us for current cohort rates.</p>
+          
+        </div>
+      </div>
+      <div>
+        <div class="cta-section" style="border-radius:16px;">
+          <h2 style="font-size:1.8rem;">Ready?</h2>
+          <p style="font-size:0.92rem;">The next cohort is forming. 8 weeks that change how your team shows up internationally.</p>
+          <button class="cta-btn" onclick="openApplyModal()">Apply Now →</button>
+          <p style="font-size:0.75rem;opacity:0.5;margin-top:1.5rem;">Applications reviewed on a rolling basis.<br>Limited to 30 companies per cohort.</p>
+        </div>
+        <div style="margin-top:1.5rem;padding:2rem;background:var(--bg-warm);border-radius:14px;">
+          <h4 style="font-size:0.88rem;font-weight:700;margin-bottom:0.75rem;">Questions?</h4>
+          <p style="font-size:0.82rem;color:var(--text-sec);line-height:1.7;">Contact the SELL GLOBAL team at Mosaic Venture Lab.<br>Email: vh@mvl.biz<br>Location: TTA, Taipei</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  if (event && event.target) event.target.classList.add('active');
+  document.querySelector('.nav-tabs').classList.remove('open');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  setTimeout(initReveals, 100);
+}
+
+function initReveals() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => obs.observe(el));
+}
+
+// Nav scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Init
+document.addEventListener('DOMContentLoaded', initReveals);
+</script>
+
+<!-- ── APPLY MODAL ── -->
+<div id="sg-overlay" role="dialog" aria-modal="true" aria-labelledby="sg-modal-heading">
+  <div id="sg-modal">
+    <button id="sg-close" onclick="closeApplyModal()" aria-label="Close">✕</button>
+
+    <div id="sg-form-wrap">
+      <p class="sg-eyebrow">Join the next cohort</p>
+      <h2 class="sg-title" id="sg-modal-heading">Apply to SELL GLOBAL</h2>
+      <p class="sg-sub">Applications reviewed on a rolling basis. Limited to 30 companies per cohort.</p>
+
+      <div class="sg-row">
+        <div class="sg-field">
+          <label for="sg-name">Your name *</label>
+          <input type="text" id="sg-name" placeholder="Jane Chen" required />
+        </div>
+        <div class="sg-field">
+          <label for="sg-company">Company / Organisation *</label>
+          <input type="text" id="sg-company" placeholder="Acme Tech" required />
+        </div>
+      </div>
+      <div class="sg-field">
+        <label for="sg-role">Your role *</label>
+        <input type="text" id="sg-role" placeholder="CEO, BD Lead, Student…" required />
+      </div>
+      <div class="sg-field">
+        <label for="sg-email">Email address *</label>
+        <input type="email" id="sg-email" placeholder="you@company.com" required />
+      </div>
+      <div class="sg-row">
+        <div class="sg-field">
+          <label for="sg-track">Track *</label>
+          <select id="sg-track" required>
+            <option value="" disabled selected>Select track</option>
+            <option value="Track A — Companies">Track A — Companies</option>
+            <option value="Track B — Individuals">Track B — Individuals</option>
+          </select>
+        </div>
+        <div class="sg-field">
+          <label for="sg-target">Target market</label>
+          <select id="sg-target">
+            <option value="" disabled selected>Select market</option>
+            <option value="Europe">Europe</option>
+            <option value="North America">North America</option>
+            <option value="Both">Both</option>
+            <option value="Not sure yet">Not sure yet</option>
+          </select>
+        </div>
+      </div>
+      <div class="sg-field">
+        <label for="sg-event">Next international event</label>
+        <select id="sg-event">
+          <option value="" disabled selected>Select event</option>
+          <option value="CES 2027">CES 2027</option>
+          <option value="VivaTech 2026">VivaTech 2026</option>
+          <option value="Direct B2B sales">Direct B2B sales</option>
+          <option value="Other / Not yet planned">Other / Not yet planned</option>
+        </select>
+      </div>
+      <div class="sg-field">
+        <label for="sg-why">Why are you applying? (optional)</label>
+        <textarea id="sg-why" placeholder="Tell us about your current sales challenge or goal…"></textarea>
+      </div>
+      <div class="sg-field">
+        <label for="sg-source">How did you hear about SELL GLOBAL?</label>
+        <select id="sg-source">
+          <option value="" disabled selected>Select source</option>
+          <option value="MVL website">MVL website</option>
+          <option value="LinkedIn">LinkedIn</option>
+          <option value="Referral from alumni">Referral from alumni</option>
+          <option value="TTA / event">TTA / event</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <button id="sg-submit" onclick="submitApplication()">
+        <span id="sg-btn-text">Submit Application →</span>
+      </button>
+      <div id="sg-error"></div>
+      <p class="sg-privacy">Your information is kept confidential and used only for cohort review.</p>
+    </div>
+
+    <div id="sg-success">
+      <div class="sg-check">✓</div>
+      <h3>Application received.</h3>
+      <p>We review applications on a rolling basis.<br>Expect to hear from us within 3–5 business days.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Replace with your deployed Apps Script URL ──
+const SG_URL = 'https://script.google.com/macros/s/AKfycbwJS_K25ntALUsasgW87pd4_-TKCIpqZHXr-FIgj_zw2_16X0p7p6QPAoHh8i8mO7YKzA/exec';
+
+function openApplyModal() {
+  document.getElementById('sg-overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeApplyModal() {
+  document.getElementById('sg-overlay').classList.remove('active');
+  document.body.style.overflow = '';
+  // Reset back to form state
+  document.getElementById('sg-form-wrap').style.display = 'block';
+  document.getElementById('sg-success').style.display = 'none';
+  document.querySelectorAll('#sg-modal input, #sg-modal textarea, #sg-modal select').forEach(el => {
+    if (el.tagName === 'SELECT') el.selectedIndex = 0;
+    else el.value = '';
+  });
+  // Reset submit button
+  const btn = document.getElementById('sg-submit');
+  if (btn) { btn.disabled = false; document.getElementById('sg-btn-text').textContent = 'Submit Application →'; }
+}
+document.getElementById('sg-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeApplyModal();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeApplyModal();
+});
+
+async function submitApplication() {
+  const btn = document.getElementById('sg-submit');
+  const btnTxt = document.getElementById('sg-btn-text');
+  const errBox = document.getElementById('sg-error');
+  const name    = document.getElementById('sg-name').value.trim();
+  const company = document.getElementById('sg-company').value.trim();
+  const role    = document.getElementById('sg-role').value.trim();
+  const email   = document.getElementById('sg-email').value.trim();
+  const track   = document.getElementById('sg-track').value;
+
+  if (!name || !company || !role || !email || !track) {
+    showErr('Please fill in all required fields (*).'); return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    showErr('Please enter a valid email address.'); return;
+  }
+  btn.disabled = true;
+  btnTxt.textContent = 'Submitting…';
+  errBox.style.display = 'none';
+
+  const payload = {
+    name, company, role, email, track,
+    target:    document.getElementById('sg-target').value  || '—',
+    event:     document.getElementById('sg-event').value   || '—',
+    why:       document.getElementById('sg-why').value.trim() || '—',
+    source:    document.getElementById('sg-source').value  || '—',
+    timestamp: new Date().toISOString()
+  };
+
+  try {
+    await fetch(SG_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    document.getElementById('sg-form-wrap').style.display = 'none';
+    document.getElementById('sg-success').style.display = 'block';
+  } catch(err) {
+    btn.disabled = false;
+    btnTxt.textContent = 'Submit Application →';
+    showErr('Something went wrong. Please try again or email vh@mvl.biz directly.');
+  }
+}
+function showErr(msg) {
+  const e = document.getElementById('sg-error');
+  e.textContent = msg; e.style.display = 'block';
+}
+</script>
+</body>
+</html>
