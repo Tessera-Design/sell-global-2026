@@ -131,7 +131,6 @@ nav.scrolled { border-bottom-color:var(--border); }
 .cta-section h2 { font-family:'DM Serif Display',serif; font-size:clamp(1.8rem,3.5vw,2.8rem); margin-bottom:1rem; }
 .cta-section p { font-size:1rem; opacity:0.75; max-width:500px; margin:0 auto 2rem; line-height:1.7; }
 .cta-btn { display:inline-block; padding:1rem 2.5rem; background:var(--red); color:white; text-decoration:none; border-radius:8px; font-weight:600; font-size:0.9rem; letter-spacing:0.02em; transition:all .2s; }
-.cta-btn { cursor:pointer; }
 .cta-btn:hover { background:#B91C1C; transform:translateY(-1px); }
 
 /* REVEAL */
@@ -244,6 +243,21 @@ nav.scrolled { border-bottom-color:var(--border); }
 .infographic-frame { border-radius:16px; overflow:hidden; box-shadow:var(--sh-lg); border:1px solid var(--border); }
 .infographic-frame img { width:100%; display:block; }
 
+/* PORTFOLIO CARDS */
+.pf-card { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:1.6rem; transition:box-shadow .3s, transform .3s; display:flex; flex-direction:column; gap:0.6rem; }
+.pf-card:hover { box-shadow:var(--sh-md); transform:translateY(-2px); }
+.pf-logo-row { display:flex; align-items:center; justify-content:space-between; gap:0.75rem; min-height:44px; }
+.pf-logo { max-height:36px; max-width:160px; object-fit:contain; }
+.pf-badge { font-family:'IBM Plex Mono',monospace; font-size:0.58rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:0.3rem 0.65rem; border-radius:5px; white-space:nowrap; flex-shrink:0; }
+.pf-badge.exit { background:var(--red-light); color:var(--red); }
+.pf-badge.unicorn { background:#FEF3C7; color:#B45309; }
+.pf-badge.funded { background:var(--blue-light); color:var(--blue); }
+.pf-badge.portfolio { background:rgba(15,118,110,0.12); color:var(--teal); }
+.pf-name { font-family:'DM Serif Display',serif; font-size:1.2rem; line-height:1.2; margin-top:0.1rem; }
+.pf-desc { font-size:0.85rem; line-height:1.6; color:var(--text-sec); }
+.pf-mvl { font-size:0.78rem; line-height:1.55; color:var(--text); padding-top:0.7rem; border-top:1px dashed var(--border); margin-top:auto; }
+.pf-mvl::before { content:'Taiwan work · '; font-family:'IBM Plex Mono',monospace; font-size:0.6rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--red); }
+
 /* ── Apply Modal ── */
 #sg-overlay{display:none;position:fixed;inset:0;background:rgba(10,13,28,.85);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:9999;align-items:center;justify-content:center;padding:1rem}
 #sg-overlay.active{display:flex}
@@ -280,7 +294,7 @@ nav.scrolled { border-bottom-color:var(--border); }
 <!-- NAV -->
 <nav id="navbar">
 <div class="nav-inner">
-  <a class="nav-brand" href="#" onclick="showPage('home')"><img src="Mosaic%20Venture%20Lab_U.jpg" style="height:28px;width:auto;vertical-align:middle;margin-right:8px;" alt="Mosaic">SELL <em>GLOBAL</em></a>
+  <a class="nav-brand" href="#" onclick="showPage('home')"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Mosaic%20Venture%20Lab_U.jpg" style="height:28px;width:auto;vertical-align:middle;margin-right:8px;" alt="Mosaic">SELL <em>GLOBAL</em></a>
   <button class="nav-hamburger" onclick="document.querySelector('.nav-tabs').classList.toggle('open')" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -302,7 +316,7 @@ nav.scrolled { border-bottom-color:var(--border); }
   <!-- HERO -->
   <div class="section" style="padding-top:10rem;padding-bottom:4rem;">
     <div class="reveal">
-      <div class="hero-tag"><img src="Mosaic%20Venture%20Lab_U.jpg" style="height:32px;width:auto;vertical-align:middle;margin-right:8px;" alt="Mosaic">Mosaic Venture Lab</div>
+      <div class="hero-tag"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Mosaic%20Venture%20Lab_U.jpg" style="height:32px;width:auto;vertical-align:middle;margin-right:8px;" alt="Mosaic">Mosaic Venture Lab</div>
       <h1 class="hero-title">Your tech works.<br>Now learn to <em>sell it.</em></h1>
       <p class="hero-sub">8 weeks that teach Taiwanese startups and SMEs to sell the way European and American buyers actually buy. AI-native sales pipelines. Cross-cultural buyer psychology. Competitive simulation. B2B and B2C tracks.</p>
       <div class="g4 reveal" style="margin-top:2.5rem;">
@@ -320,12 +334,28 @@ nav.scrolled { border-bottom-color:var(--border); }
         <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M19.848%2C7.848c-0.992%2C0-1.902%2C0.348-2.616%2C0.928c-0.714-0.58-1.624-0.928-2.616-0.928%20c-0.992%2C0-1.902%2C0.348-2.616%2C0.928c-0.714-0.58-1.624-0.928-2.616-0.928c-0.992%2C0-1.902%2C0.348-2.616%2C0.928%20c-0.714-0.58-1.624-0.928-2.616-0.928C1.859%2C7.848%2C0%2C9.707%2C0%2C12s1.859%2C4.152%2C4.152%2C4.152c0.992%2C0%2C1.902-0.348%2C2.616-0.928%20c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928c0.992%2C0%2C1.902-0.348%2C2.616-0.928c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928%20c0.992%2C0%2C1.902-0.348%2C2.616-0.928c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928C22.141%2C16.152%2C24%2C14.293%2C24%2C12S22.141%2C7.848%2C19.848%2C7.848z%20M17.232%2C13.866c-0.376-0.526-0.598-1.17-0.598-1.866c0-0.696%2C0.222-1.34%2C0.598-1.866c0.376%2C0.526%2C0.598%2C1.17%2C0.598%2C1.866%20C17.83%2C12.696%2C17.608%2C13.34%2C17.232%2C13.866z%20M12%2C13.866c-0.376-0.526-0.598-1.17-0.598-1.866c0-0.696%2C0.222-1.34%2C0.598-1.866%20c0.376%2C0.526%2C0.598%2C1.17%2C0.598%2C1.866C12.598%2C12.696%2C12.376%2C13.34%2C12%2C13.866z%20M6.768%2C13.866C6.392%2C13.34%2C6.17%2C12.696%2C6.17%2C12%20c0-0.696%2C0.222-1.34%2C0.598-1.866C7.144%2C10.66%2C7.366%2C11.304%2C7.366%2C12C7.366%2C12.696%2C7.144%2C13.34%2C6.768%2C13.866z%20M0.938%2C12%20c0-1.775%2C1.439-3.214%2C3.214-3.214c0.736%2C0%2C1.414%2C0.248%2C1.956%2C0.665C5.56%2C10.154%2C5.232%2C11.039%2C5.232%2C12%20c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665C2.377%2C15.214%2C0.938%2C13.775%2C0.938%2C12z%20M7.428%2C14.549%20C7.976%2C13.846%2C8.304%2C12.961%2C8.304%2C12c0-0.961-0.328-1.846-0.876-2.549c0.542-0.416%2C1.22-0.665%2C1.956-0.665%20c0.736%2C0%2C1.414%2C0.248%2C1.956%2C0.665c-0.549%2C0.704-0.876%2C1.588-0.876%2C2.549c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549%20c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665C8.648%2C15.214%2C7.97%2C14.966%2C7.428%2C14.549z%20M12.66%2C14.549c0.549-0.704%2C0.876-1.588%2C0.876-2.549%20c0-0.961-0.328-1.846-0.876-2.55c0.542-0.416%2C1.22-0.665%2C1.956-0.665s1.414%2C0.248%2C1.956%2C0.665%20c-0.549%2C0.704-0.876%2C1.588-0.876%2C2.549c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665%20C13.88%2C15.214%2C13.202%2C14.966%2C12.66%2C14.549z%20M19.848%2C15.214c-0.736%2C0-1.414-0.248-1.956-0.665c0.548-0.704%2C0.876-1.588%2C0.876-2.549%20c0-0.961-0.328-1.846-0.876-2.549c0.542-0.416%2C1.22-0.665%2C1.956-0.665c1.775%2C0%2C3.214%2C1.439%2C3.214%2C3.214%20S21.623%2C15.214%2C19.848%2C15.214z'%20fill='%23888888'/></svg>" alt="Audi" class="corp-logo" style="height:34px;">
         <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M12%200C5.36%200%200%205.36%200%2012S5.36%2024%2012%2024%2024%2018.64%2024%2012%2018.64%200%2012%200M12%201.41C13.2%201.41%2014.36%201.63%2015.43%202L12.13%209.13C12.09%209.17%2012.09%209.26%2012%209.26S11.91%209.17%2011.87%209.13L8.57%202C9.64%201.63%2010.8%201.42%2012%201.42M6.9%202.74L10.72%2010.97C10.8%2011.14%2010.89%2011.19%2011%2011.19H13C13.12%2011.19%2013.2%2011.14%2013.29%2010.97L17.06%202.74C18.64%203.64%2020%204.93%2020.96%206.47L15.6%2016.84C15.56%2016.93%2015.5%2016.97%2015.47%2016.97C15.39%2016.97%2015.39%2016.89%2015.34%2016.84L13.29%2012.3C13.2%2012.13%2013.12%2012.09%2013%2012.09H11C10.89%2012.09%2010.8%2012.13%2010.71%2012.3L8.66%2016.84C8.61%2016.89%208.62%2016.97%208.53%2016.97C8.44%2016.97%208.44%2016.89%208.4%2016.84L3%206.47C3.94%204.93%205.32%203.64%206.9%202.74M2.06%208.53L8.23%2020.53C8.31%2020.7%208.4%2020.83%208.62%2020.83C8.83%2020.83%208.91%2020.7%209%2020.53L11.87%2014.14C11.91%2014.06%2011.96%2014%2012%2014C12.09%2014%2012.09%2014.1%2012.13%2014.14L15.04%2020.53C15.13%2020.7%2015.21%2020.83%2015.43%2020.83C15.64%2020.83%2015.73%2020.7%2015.81%2020.53L22%208.53C22.37%209.6%2022.59%2010.76%2022.59%2012C22.54%2017.79%2017.79%2022.59%2012%2022.59C6.21%2022.59%201.46%2017.79%201.46%2012C1.46%2010.8%201.67%209.65%202.06%208.53Z'%20fill='%23888888'/></svg>" alt="Volkswagen" class="corp-logo" style="height:32px;">
         <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M17.963%2014.6V9.324h1.222v4.204h2.14v1.07h-3.362zm-9.784-3.288l2.98-2.292c.281.228.56.458.841.687l-2.827%202.14.611.535%202.827-2.216c.281.228.56.458.841.688a295.83%20295.83%200%200%201-2.827%202.216l.61.536%202.83-2.295-.001-1.986h1.223v4.204h2.216v1.07h-3.362v-1.987c-.995.763-1.987%201.529-2.981%202.292l-2.981-2.292c-.144.729-.653%201.36-1.312%201.694-.285.147-.597.24-.915.276-.183.022-.367.017-.551.017H3.516V9.325H5.69a2.544%202.544%200%200%201%201.563.557c.454.36.778.872.927%201.43m-3.516-.917v3.21l.953-.001a1.377%201.377%200%200%200%201.036-.523%201.74%201.74%200%200%200%20.182-1.889%201.494%201.494%200%200%200-.976-.766c-.166-.04-.338-.03-.507-.032h-.688zM11.82%200h.337a11.94%2011.94%200%200%201%205.405%201.373%2012.101%2012.101%200%200%201%204.126%203.557A11.93%2011.93%200%200%201%2024%2011.82v.36a11.963%2011.963%200%200%201-3.236%208.033A11.967%2011.967%200%200%201%2012.182%2024h-.361a11.993%2011.993%200%200%201-4.145-.806%2012.04%2012.04%200%200%201-4.274-2.836A12.057%2012.057%200%200%201%20.576%2015.67%2012.006%2012.006%200%200%201%200%2012.181v-.361a11.924%2011.924%200%200%201%201.992-6.396%2012.211%2012.211%200%200%201%204.71-4.172A11.875%2011.875%200%200%201%2011.82%200m-.153%201.23a10.724%2010.724%200%200%200-6.43%202.375%2010.78%2010.78%200%200%200-3.319%204.573%2010.858%2010.858%200%200%200%20.193%208.12%2010.788%2010.788%200%200%200%203.546%204.421%2010.698%2010.698%200%200%200%204.786%201.946c1.456.209%202.955.124%204.376-.26a10.756%2010.756%200%200%200%205.075-3.062%2010.742%2010.742%200%200%200%202.686-5.28%2010.915%2010.915%200%200%200-.122-4.682%2010.77%2010.77%200%200%200-7.098-7.626%2010.78%2010.78%200%200%200-3.693-.525z'%20fill='%23888888'/></svg>" alt="Dell" class="corp-logo" style="height:26px;">
-        <img src="EMC-Logo.png" alt="EMC" class="corp-logo" style="height:30px;object-fit:contain;">
-        <img src="continental.png" alt="Continental" class="corp-logo" style="height:28px;object-fit:contain;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/EMC-Logo.png" alt="EMC" class="corp-logo" style="height:30px;object-fit:contain;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/continental.png" alt="Continental" class="corp-logo" style="height:28px;object-fit:contain;">
         <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M12%200C5.373%200%200%205.373%200%2012s5.373%2012%2012%2012%2012-5.373%2012-12C24.002%205.375%2018.632.002%2012.007%200H12zm7.327%2018.065s-.581-2.627-1.528-4.197c-.514-.857-1.308-1.553-2.368-1.532-.745%200-1.399.423-2.2%201.553-.469.77-.882%201.573-1.235%202.403%200%200-.29-.675-.63-1.343a8.038%208.038%200%200%200-.605-1.049c-.804-1.13-1.455-1.539-2.2-1.553-1.049-.021-1.854.675-2.364%201.528-.948%201.574-1.528%204.197-1.528%204.197h-.864l4.606-15.12%203.56%2011.804.024.021.024-.021%203.56-11.804%204.61%2015.113h-.862z'%20fill='%23888888'/></svg>" alt="Motorola" class="corp-logo" style="height:30px;">
-        <img src="AWS.png" alt="AWS" class="corp-logo" style="height:30px;object-fit:contain;">
-        <img src="IBM.png" alt="IBM" class="corp-logo" style="height:30px;object-fit:contain;">
-        <img src="daimler.png" alt="Daimler" class="corp-logo" style="height:28px;object-fit:contain;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/AWS.png" alt="AWS" class="corp-logo" style="height:30px;object-fit:contain;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/IBM.png" alt="IBM" class="corp-logo" style="height:30px;object-fit:contain;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/daimler.png" alt="Daimler" class="corp-logo" style="height:28px;object-fit:contain;">
+        </div>
+      </div>
+
+      <!-- PORTFOLIO TRUST STRIP -->
+      <div style="margin-top:2.5rem;">
+        <div class="logo-strip-label">Global startups we've brought into Taiwan <span style="color:var(--red);">↓ see track record</span></div>
+        <div class="logo-strip">
+          <img src="https://logo.clearbit.com/rebellions.ai" alt="Rebellions" class="corp-logo" style="height:26px;object-fit:contain;">
+          <img src="https://logo.clearbit.com/indigotech.com" alt="Indigo Technologies" class="corp-logo" style="height:26px;object-fit:contain;">
+          <img src="https://logo.clearbit.com/jiosaerogel.com" alt="JIOS Aerogel" class="corp-logo" style="height:28px;object-fit:contain;">
+          <img src="https://logo.clearbit.com/coretigo.com" alt="CoreTigo" class="corp-logo" style="height:28px;object-fit:contain;">
+          <img src="https://logo.clearbit.com/drvr.co" alt="drvr" class="corp-logo" style="height:24px;object-fit:contain;">
+          <img src="https://logo.clearbit.com/veracityprotocol.org" alt="Veracity Protocol" class="corp-logo" style="height:28px;object-fit:contain;">
+          <img src="https://logo.clearbit.com/woojer.com" alt="Woojer" class="corp-logo" style="height:24px;object-fit:contain;">
+          <img src="https://logo.clearbit.com/astrus.ai" alt="Astrus AI" class="corp-logo" style="height:26px;object-fit:contain;">
+          <img src="https://logo.clearbit.com/infocustx.com" alt="InFocus Therapeutics" class="corp-logo" style="height:26px;object-fit:contain;">
         </div>
       </div>
 
@@ -363,7 +393,7 @@ nav.scrolled { border-bottom-color:var(--border); }
       <!-- INFOGRAPHIC -->
       <div class="reveal" style="margin-top:3rem;">
         <div class="infographic-frame">
-          <img src="infographic.png" alt="Sell Global — From Technical Excellence to International Deals">
+          <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/infographic.png" alt="Sell Global — From Technical Excellence to International Deals">
         </div>
         <p style="font-size:0.68rem;color:var(--text-muted);text-align:center;margin-top:0.75rem;font-style:italic;">SELL GLOBAL: 8 weeks from technical excellence to international deals.</p>
       </div>
@@ -379,7 +409,7 @@ nav.scrolled { border-bottom-color:var(--border); }
     <div class="tl-grid reveal" style="margin-top:2.5rem;">
       <div class="tl-item">
         <div class="tl-year">2011-2013</div>
-        <div class="tl-title">Startup Weekend Taiwan <img src="startup-weekend-vector-logo.png" alt="SW" class="corp-logo" style="height:18px;object-fit:contain;"></div>
+        <div class="tl-title">Startup Weekend Taiwan <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/startup-weekend-vector-logo.png" alt="SW" class="corp-logo" style="height:18px;object-fit:contain;"></div>
         <div class="tl-desc">Introduced Startup Weekend to Taiwan. Events at Google, Microsoft, and top universities in Hsinchu, Tainan, Kaohsiung, Taipei.</div>
       </div>
       <div class="tl-item">
@@ -394,7 +424,7 @@ nav.scrolled { border-bottom-color:var(--border); }
       </div>
       <div class="tl-item">
         <div class="tl-year">2024</div>
-        <div class="tl-title">TTA × CES 2025 <img src="TTA.jpg" alt="TTA" class="corp-logo" style="height:28px;object-fit:contain;"></div>
+        <div class="tl-title">TTA × CES 2025 <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/TTA.jpg" alt="TTA" class="corp-logo" style="height:28px;object-fit:contain;"></div>
         <div class="tl-desc">Trained startups for CES 2025. 2-day bootcamp with keynotes, workshop tracks, and competitive simulations.</div>
       </div>
       <div class="tl-item">
@@ -492,19 +522,19 @@ nav.scrolled { border-bottom-color:var(--border); }
   <div class="section-sm">
     <div class="g4 reveal">
       <div class="event-card">
-        <div class="event-photo" style="aspect-ratio:5/4;"><img src="CES%202025%20Bootcamp.jpg" alt="CES 2025 Bootcamp"></div>
+        <div class="event-photo" style="aspect-ratio:5/4;"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/CES%202025%20Bootcamp.jpg" alt="CES 2025 Bootcamp"></div>
         <div class="event-overlay"><h4>CES 2025 Bootcamp</h4></div>
       </div>
       <div class="event-card">
-        <div class="event-photo" style="aspect-ratio:5/4;"><img src="VivaTech%202025.JPG" alt="VivaTech 2025 Workshop"></div>
+        <div class="event-photo" style="aspect-ratio:5/4;"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/VivaTech%202025.JPG" alt="VivaTech 2025 Workshop"></div>
         <div class="event-overlay"><h4>VivaTech 2025</h4></div>
       </div>
       <div class="event-card">
-        <div class="event-photo" style="aspect-ratio:5/4;"><img src="War%20Games%20Simulation.jpg" alt="War Games Simulation"></div>
+        <div class="event-photo" style="aspect-ratio:5/4;"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/War%20Games%20Simulation.jpg" alt="War Games Simulation"></div>
         <div class="event-overlay"><h4>War Games Simulation</h4></div>
       </div>
       <div class="event-card">
-        <div class="event-photo" style="aspect-ratio:5/4;"><img src="Mentor%20Sessions.jpg" alt="Mentor Sessions"></div>
+        <div class="event-photo" style="aspect-ratio:5/4;"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Mentor%20Sessions.jpg" alt="Mentor Sessions"></div>
         <div class="event-overlay"><h4>Mentor Sessions</h4></div>
       </div>
     </div>
@@ -515,7 +545,7 @@ nav.scrolled { border-bottom-color:var(--border); }
     <div class="cta-section reveal">
       <h2>Your technology can compete globally.</h2>
       <p>The question is whether your team is ready to sell it the way global buyers actually buy.</p>
-      <button class="cta-btn" onclick="openApplyModal()">Apply to SELL GLOBAL →</button>
+      <a href="#" class="cta-btn" onclick="showPage('apply')">Apply to SELL GLOBAL →</a>
     </div>
   </div>
 
@@ -797,7 +827,7 @@ nav.scrolled { border-bottom-color:var(--border); }
     </div>
     <div class="g2 reveal" style="margin-top:2rem;align-items:start;">
       <div>
-        <img src="praise%20from%20startup.jpg" alt="LinkedIn message from Nicolas Fahier, CTO at IIST Inc., praising the workshop" style="width:100%;border-radius:14px;box-shadow:var(--sh-md);">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/praise%20from%20startup.jpg" alt="LinkedIn message from Nicolas Fahier, CTO at IIST Inc., praising the workshop" style="width:100%;border-radius:14px;box-shadow:var(--sh-md);">
         <p style="font-size:0.72rem;color:var(--text-muted);margin-top:0.75rem;">Nicolas Fahier · CTO, IIST Inc. | Trust & Security Hardware Solutions · After CES 2026 Bootcamp</p>
       </div>
       <div>
@@ -825,16 +855,52 @@ nav.scrolled { border-bottom-color:var(--border); }
 <!-- ==================== TRACK RECORD ==================== -->
 <div class="page" id="page-track">
   <div class="section" style="padding-top:8rem;">
+
+    <!-- PAGE HEADER: TWO PORTFOLIOS -->
     <div class="reveal">
       <div class="section-label">Who We Are</div>
-      <h1 class="section-heading">14 years building programs<br>for Taiwan's startups.</h1>
-      <p class="section-sub">Mosaic Venture Lab has been in this ecosystem since 2011, originally as Yushan Ventures. This is not a new venture deciding to work with startups.</p>
+      <h1 class="section-heading">Two portfolios. Fourteen years.<br>One team.</h1>
+      <p class="section-sub">Mosaic Venture Lab runs bidirectional deep-tech flow out of Taiwan. <strong style="color:var(--blue);font-weight:600;">Outbound:</strong> we train Taiwanese startups to sell into Europe and the US. <strong style="color:var(--teal);font-weight:600;">Inbound:</strong> we bring foreign startups into Taiwan's supply chain, investor base, and research ecosystem. Same team, same relationships, opposite directions — and that's why both sides work.</p>
     </div>
-    <div class="g2 reveal" style="margin-top:3rem;">
+
+    <!-- DIRECTIONAL SPLIT SUMMARY -->
+    <div class="g2 reveal" style="margin-top:2.5rem;gap:1.5rem;">
+      <div style="padding:2rem;background:var(--blue-light);border-radius:14px;border-left:4px solid var(--blue);">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-bottom:0.75rem;">Taiwan → Global</div>
+        <h3 style="font-family:'DM Serif Display',serif;font-size:1.4rem;line-height:1.25;margin-bottom:0.5rem;">Outbound Training</h3>
+        <p style="font-size:0.88rem;line-height:1.65;color:var(--text-sec);">180+ Taiwanese startups trained for CES and VivaTech. Three cohorts. 15+ international mentors from Google, Audi, VW, AWS, IBM, Continental, Daimler.</p>
+      </div>
+      <div style="padding:2rem;background:rgba(15,118,110,0.08);border-radius:14px;border-left:4px solid var(--teal);">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:0.75rem;">Global → Taiwan</div>
+        <h3 style="font-family:'DM Serif Display',serif;font-size:1.4rem;line-height:1.25;margin-bottom:0.5rem;">Inbound Portfolio</h3>
+        <p style="font-size:0.88rem;line-height:1.65;color:var(--text-sec);">12 foreign deep-tech startups brought into Taiwan. Four strategic exits (Qualcomm, Sentiance). One pre-IPO unicorn. One Foxconn-invested EV OEM.</p>
+      </div>
+    </div>
+
+    <!-- =========== OUTBOUND PORTFOLIO SECTION =========== -->
+    <div class="reveal" style="margin-top:5rem;padding-top:3rem;border-top:1px solid var(--border);">
+      <div class="section-label" style="color:var(--blue);">Outbound Portfolio · Taiwan → Global</div>
+      <h2 class="section-heading">Who we've trained for<br>international markets.</h2>
+      <p class="section-sub">Since 2011, we've run the training programs that prepare Taiwanese founders to sell into Europe and the US. Startup Weekend Taiwan, the APEC Accelerator Network with MoEA/SMEA, tech scouting for Volkswagen Group, LITEON+ at TTA, and the CES + VivaTech bootcamps that became SELL GLOBAL.</p>
+    </div>
+
+    <div class="g4 reveal" style="margin-top:2rem;">
+      <div class="stat-card"><h3>180+</h3><p>Startups Trained</p></div>
+      <div class="stat-card red"><h3>3</h3><p>Cohorts Completed</p></div>
+      <div class="stat-card"><h3>15+</h3><p>International Mentors</p></div>
+      <div class="stat-card"><h3>14</h3><p>Years in Taiwan</p></div>
+    </div>
+
+    <!-- TIMELINE: 14-YEAR FOUNDATION -->
+    <div class="reveal" style="margin-top:3rem;">
+      <div class="section-label">14-Year Foundation</div>
+      <h3 style="font-family:'DM Serif Display',serif;font-size:1.5rem;line-height:1.25;margin-top:0.75rem;margin-bottom:0.5rem;">Programs we built or co-ran with the Taiwan ecosystem.</h3>
+    </div>
+    <div class="g2 reveal" style="margin-top:1.5rem;">
       <div>
         <div class="tl-item" style="margin-bottom:2rem;">
           <div class="tl-year">2011-2013</div>
-          <div class="tl-title">Startup Weekend Taiwan <img src="startup-weekend-vector-logo.png" alt="SW" class="corp-logo" style="height:18px;object-fit:contain;"></div>
+          <div class="tl-title">Startup Weekend Taiwan <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/startup-weekend-vector-logo.png" alt="SW" class="corp-logo" style="height:18px;object-fit:contain;"></div>
           <div class="tl-desc">Co-founded Yushan Ventures in Taipei. Introduced Startup Weekend to Taiwan — events at Google Taiwan, Microsoft Taiwan, and top universities in Hsinchu, Tainan, Kaohsiung, Taipei.</div>
         </div>
         <div class="tl-item" style="margin-bottom:2rem;">
@@ -849,14 +915,14 @@ nav.scrolled { border-bottom-color:var(--border); }
         </div>
         <div class="tl-item">
           <div class="tl-year">2018</div>
-          <div class="tl-title">Mosaic Venture Lab <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M19.848%2C7.848c-0.992%2C0-1.902%2C0.348-2.616%2C0.928c-0.714-0.58-1.624-0.928-2.616-0.928%20c-0.992%2C0-1.902%2C0.348-2.616%2C0.928c-0.714-0.58-1.624-0.928-2.616-0.928c-0.992%2C0-1.902%2C0.348-2.616%2C0.928%20c-0.714-0.58-1.624-0.928-2.616-0.928C1.859%2C7.848%2C0%2C9.707%2C0%2C12s1.859%2C4.152%2C4.152%2C4.152c0.992%2C0%2C1.902-0.348%2C2.616-0.928%20c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928c0.992%2C0%2C1.902-0.348%2C2.616-0.928c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928%20c0.992%2C0%2C1.902-0.348%2C2.616-0.928c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928C22.141%2C16.152%2C24%2C14.293%2C24%2C12S22.141%2C7.848%2C19.848%2C7.848z%20M17.232%2C13.866c-0.376-0.526-0.598-1.17-0.598-1.866c0-0.696%2C0.222-1.34%2C0.598-1.866c0.376%2C0.526%2C0.598%2C1.17%2C0.598%2C1.866%20C17.83%2C12.696%2C17.608%2C13.34%2C17.232%2C13.866z%20M12%2C13.866c-0.376-0.526-0.598-1.17-0.598-1.866c0-0.696%2C0.222-1.34%2C0.598-1.866%20c0.376%2C0.526%2C0.598%2C1.17%2C0.598%2C1.866C12.598%2C12.696%2C12.376%2C13.34%2C12%2C13.866z%20M6.768%2C13.866C6.392%2C13.34%2C6.17%2C12.696%2C6.17%2C12%20c0-0.696%2C0.222-1.34%2C0.598-1.866C7.144%2C10.66%2C7.366%2C11.304%2C7.366%2C12C7.366%2C12.696%2C7.144%2C13.34%2C6.768%2C13.866z%20M0.938%2C12%20c0-1.775%2C1.439-3.214%2C3.214-3.214c0.736%2C0%2C1.414%2C0.248%2C1.956%2C0.665C5.56%2C10.154%2C5.232%2C11.039%2C5.232%2C12%20c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665C2.377%2C15.214%2C0.938%2C13.775%2C0.938%2C12z%20M7.428%2C14.549%20C7.976%2C13.846%2C8.304%2C12.961%2C8.304%2C12c0-0.961-0.328-1.846-0.876-2.549c0.542-0.416%2C1.22-0.665%2C1.956-0.665%20c0.736%2C0%2C1.414%2C0.248%2C1.956%2C0.665c-0.549%2C0.704-0.876%2C1.588-0.876%2C2.549c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549%20c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665C8.648%2C15.214%2C7.97%2C14.966%2C7.428%2C14.549z%20M12.66%2C14.549c0.549-0.704%2C0.876-1.588%2C0.876-2.549%20c0-0.961-0.328-1.846-0.876-2.55c0.542-0.416%2C1.22-0.665%2C1.956-0.665s1.414%2C0.248%2C1.956%2C0.665%20c-0.549%2C0.704-0.876%2C1.588-0.876%2C2.549c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665%20C13.88%2C15.214%2C13.202%2C14.966%2C12.66%2C14.549z%20M19.848%2C15.214c-0.736%2C0-1.414-0.248-1.956-0.665c0.548-0.704%2C0.876-1.588%2C0.876-2.549%20c0-0.961-0.328-1.846-0.876-2.549c0.542-0.416%2C1.22-0.665%2C1.956-0.665c1.775%2C0%2C3.214%2C1.439%2C3.214%2C3.214%20S21.623%2C15.214%2C19.848%2C15.214z'%20fill='%23888888'/></svg>" alt="Audi" class="corp-logo" style="height:18px;"> <img src="continental.png" alt="Continental" class="corp-logo" style="height:26px;object-fit:contain;"></div>
+          <div class="tl-title">Mosaic Venture Lab <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M19.848%2C7.848c-0.992%2C0-1.902%2C0.348-2.616%2C0.928c-0.714-0.58-1.624-0.928-2.616-0.928%20c-0.992%2C0-1.902%2C0.348-2.616%2C0.928c-0.714-0.58-1.624-0.928-2.616-0.928c-0.992%2C0-1.902%2C0.348-2.616%2C0.928%20c-0.714-0.58-1.624-0.928-2.616-0.928C1.859%2C7.848%2C0%2C9.707%2C0%2C12s1.859%2C4.152%2C4.152%2C4.152c0.992%2C0%2C1.902-0.348%2C2.616-0.928%20c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928c0.992%2C0%2C1.902-0.348%2C2.616-0.928c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928%20c0.992%2C0%2C1.902-0.348%2C2.616-0.928c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928C22.141%2C16.152%2C24%2C14.293%2C24%2C12S22.141%2C7.848%2C19.848%2C7.848z%20M17.232%2C13.866c-0.376-0.526-0.598-1.17-0.598-1.866c0-0.696%2C0.222-1.34%2C0.598-1.866c0.376%2C0.526%2C0.598%2C1.17%2C0.598%2C1.866%20C17.83%2C12.696%2C17.608%2C13.34%2C17.232%2C13.866z%20M12%2C13.866c-0.376-0.526-0.598-1.17-0.598-1.866c0-0.696%2C0.222-1.34%2C0.598-1.866%20c0.376%2C0.526%2C0.598%2C1.17%2C0.598%2C1.866C12.598%2C12.696%2C12.376%2C13.34%2C12%2C13.866z%20M6.768%2C13.866C6.392%2C13.34%2C6.17%2C12.696%2C6.17%2C12%20c0-0.696%2C0.222-1.34%2C0.598-1.866C7.144%2C10.66%2C7.366%2C11.304%2C7.366%2C12C7.366%2C12.696%2C7.144%2C13.34%2C6.768%2C13.866z%20M0.938%2C12%20c0-1.775%2C1.439-3.214%2C3.214-3.214c0.736%2C0%2C1.414%2C0.248%2C1.956%2C0.665C5.56%2C10.154%2C5.232%2C11.039%2C5.232%2C12%20c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665C2.377%2C15.214%2C0.938%2C13.775%2C0.938%2C12z%20M7.428%2C14.549%20C7.976%2C13.846%2C8.304%2C12.961%2C8.304%2C12c0-0.961-0.328-1.846-0.876-2.549c0.542-0.416%2C1.22-0.665%2C1.956-0.665%20c0.736%2C0%2C1.414%2C0.248%2C1.956%2C0.665c-0.549%2C0.704-0.876%2C1.588-0.876%2C2.549c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549%20c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665C8.648%2C15.214%2C7.97%2C14.966%2C7.428%2C14.549z%20M12.66%2C14.549c0.549-0.704%2C0.876-1.588%2C0.876-2.549%20c0-0.961-0.328-1.846-0.876-2.55c0.542-0.416%2C1.22-0.665%2C1.956-0.665s1.414%2C0.248%2C1.956%2C0.665%20c-0.549%2C0.704-0.876%2C1.588-0.876%2C2.549c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665%20C13.88%2C15.214%2C13.202%2C14.966%2C12.66%2C14.549z%20M19.848%2C15.214c-0.736%2C0-1.414-0.248-1.956-0.665c0.548-0.704%2C0.876-1.588%2C0.876-2.549%20c0-0.961-0.328-1.846-0.876-2.549c0.542-0.416%2C1.22-0.665%2C1.956-0.665c1.775%2C0%2C3.214%2C1.439%2C3.214%2C3.214%20S21.623%2C15.214%2C19.848%2C15.214z'%20fill='%23888888'/></svg>" alt="Audi" class="corp-logo" style="height:18px;"> <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/continental.png" alt="Continental" class="corp-logo" style="height:26px;object-fit:contain;"></div>
           <div class="tl-desc">Established as a deep-tech accelerator partnered with Audi AG, Continental AG. Focus on East Asian innovation for European automotive and industrial leaders.</div>
         </div>
       </div>
       <div>
         <div class="tl-item" style="margin-bottom:2rem;">
           <div class="tl-year">2023</div>
-          <div class="tl-title">LITEON+ at TTA <img src="Liteon.png" alt="LITEON" class="corp-logo" style="height:24px;object-fit:contain;"></div>
+          <div class="tl-title">LITEON+ at TTA <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Liteon.png" alt="LITEON" class="corp-logo" style="height:24px;object-fit:contain;"></div>
           <div class="tl-desc">LITEON+ Startup Platform at Taiwan Tech Arena — co-working, training, and demo day for hardware startups.</div>
         </div>
         <div class="tl-item" style="margin-bottom:2rem;">
@@ -884,29 +950,186 @@ nav.scrolled { border-bottom-color:var(--border); }
     </div>
     <div class="g3 reveal" style="margin-top:2rem;">
       <div class="event-card">
-        <div class="event-photo"><img src="CES%202025%20Bootcamp%201.jpg" alt="CES 2025 Bootcamp"></div>
+        <div class="event-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/CES%202025%20Bootcamp%201.jpg" alt="CES 2025 Bootcamp"></div>
         <div class="event-overlay"><h4>CES 2025 Bootcamp</h4><p>2-day intensive at TTA, Taipei · 2024</p></div>
       </div>
       <div class="event-card">
-        <div class="event-photo"><img src="VivaTech%202025%20Workshop%201.jpg" alt="VivaTech 2025 Workshop"></div>
+        <div class="event-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/VivaTech%202025%20Workshop%201.jpg" alt="VivaTech 2025 Workshop"></div>
         <div class="event-overlay"><h4>VivaTech 2025 Workshop</h4><p>4-rotation bootcamp · 30 startups · 2025</p></div>
       </div>
       <div class="event-card">
-        <div class="event-photo"><img src="CES%202026%20War%20Games%201.jpg" alt="CES 2026 War Games"></div>
+        <div class="event-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/CES%202026%20War%20Games%201.jpg" alt="CES 2026 War Games"></div>
         <div class="event-overlay"><h4>CES 2026 War Games</h4><p>Competitive simulation day · 2025</p></div>
       </div>
       <div class="event-card">
-        <div class="event-photo"><img src="role%20playing%201.JPG" alt="Mentor Role-Play"></div>
+        <div class="event-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/role%20playing%201.JPG" alt="Mentor Role-Play"></div>
         <div class="event-overlay"><h4>Mentor Role-Play</h4><p>Adversarial buyer personas · TTA</p></div>
       </div>
       <div class="event-card">
-        <div class="event-photo"><img src="Pitch%20under%20pressure%201.jpg" alt="Pitch Under Pressure"></div>
+        <div class="event-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Pitch%20under%20pressure%201.jpg" alt="Pitch Under Pressure"></div>
         <div class="event-overlay"><h4>Pitch Under Pressure</h4><p>Materials clinic · Round Robin format</p></div>
       </div>
       <div class="event-card">
-        <div class="event-photo"><img src="TTA%201.jpg" alt="Taiwan Tech Arena"></div>
+        <div class="event-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/TTA%201.jpg" alt="Taiwan Tech Arena"></div>
         <div class="event-overlay"><h4>Taiwan Tech Arena</h4><p>Home base · Taipei</p></div>
       </div>
+    </div>
+
+    <!-- =========== INBOUND PORTFOLIO SECTION =========== -->
+    <div class="reveal" style="margin-top:6rem;padding-top:3rem;border-top:1px solid var(--border);">
+      <div class="section-label" style="color:var(--teal);">Inbound Portfolio · Global → Taiwan</div>
+      <h2 class="section-heading">Twelve foreign startups.<br>Brought into Taiwan since 2018.</h2>
+      <p class="section-sub">The deep-tech companies we've brought into Taiwan's ecosystem — opening doors to Foxconn, MediaTek, UMC, ST Micro Taiwan, major server makers, telcos, manufacturers, and academic research partners. Four have exited. One is a pre-IPO unicorn. One took USD 20M from Foxconn with a board seat. Two are AI drug-discovery platforms with Taiwan presence.</p>
+    </div>
+
+    <div class="g4 reveal" style="margin-top:2rem;">
+      <div class="stat-card"><h3>12</h3><p>Portfolio Startups</p></div>
+      <div class="stat-card red"><h3>4</h3><p>Strategic Exits</p></div>
+      <div class="stat-card"><h3>$2.3B</h3><p>Peak Valuation</p></div>
+      <div class="stat-card"><h3>4</h3><p>Continents</p></div>
+    </div>
+
+    <div class="g2 reveal" style="margin-top:2rem;align-items:stretch;">
+
+      <!-- REBELLIONS -->
+      <div class="pf-card">
+        <div class="pf-logo-row">
+          <img src="https://logo.clearbit.com/rebellions.ai" class="pf-logo" alt="Rebellions">
+          <span class="pf-badge unicorn">Pre-IPO · $2.3B</span>
+        </div>
+        <div class="pf-name">Rebellions</div>
+        <div class="pf-desc">Korean fabless AI accelerator. Inference chips competing with Nvidia. Merged with SK Telecom's Sapeon to become Korea's first AI chip unicorn. Raised $400M pre-IPO in March 2026.</div>
+        <div class="pf-mvl">Helped raise capital from a major Taiwan server company. Introduced Rebellions across the Taiwan server-maker ecosystem.</div>
+      </div>
+
+      <!-- INDIGO TECHNOLOGIES -->
+      <div class="pf-card">
+        <div class="pf-logo-row">
+          <img src="https://logo.clearbit.com/indigotech.com" class="pf-logo" alt="Indigo Technologies">
+          <span class="pf-badge funded">USD 20M · Foxconn</span>
+        </div>
+        <div class="pf-name">Indigo Technologies</div>
+        <div class="pf-desc">MIT-spun EV OEM with patented road-sensing SmartWheels™. Boston-based. Building light utility EVs (FLOW, DASH) for ride-hail, delivery, and autonomous fleets.</div>
+        <div class="pf-mvl">Introduced Indigo to Foxconn. Foxconn's EV Chief Strategy Officer Jun Seki (ex-Nidec CEO, ex-Nissan COO) joined Indigo's Board.</div>
+      </div>
+
+      <!-- WIKITUDE -->
+      <div class="pf-card">
+        <div class="pf-logo-row">
+          <img src="https://logo.clearbit.com/wikitude.com" class="pf-logo" alt="Wikitude">
+          <span class="pf-badge exit">Acquired · Qualcomm</span>
+        </div>
+        <div class="pf-name">Wikitude</div>
+        <div class="pf-desc">First commercial mobile AR SDK. Salzburg-based. Image recognition, 3D tracking, location-based AR. Acquired by Qualcomm in September 2021, folded into Snapdragon Spaces XR.</div>
+        <div class="pf-mvl">Social media strategy across Taiwan and Mainland China during the growth phase leading to the Qualcomm exit.</div>
+      </div>
+
+      <!-- DRVR -->
+      <div class="pf-card">
+        <div class="pf-logo-row">
+          <img src="https://logo.clearbit.com/drvr.co" class="pf-logo" alt="drvr">
+          <span class="pf-badge exit">Acquired · Sentiance</span>
+        </div>
+        <div class="pf-name">drvr</div>
+        <div class="pf-desc">Smartphone telematics for ASEAN fleets and motorcycle insurers. Bangkok-based, founded 2014. Acquired by Sentiance in November 2024.</div>
+        <div class="pf-mvl">Introductions to Taiwan telcos for telematics pilots. MVL on the cap table — verified on Crunchbase and CB Insights.</div>
+      </div>
+
+      <!-- JIOS AEROGEL -->
+      <div class="pf-card">
+        <div class="pf-logo-row">
+          <img src="https://logo.clearbit.com/jiosaerogel.com" class="pf-logo" alt="JIOS Aerogel">
+          <span class="pf-badge funded">Hyundai Contract</span>
+        </div>
+        <div class="pf-name">JIOS Aerogel</div>
+        <div class="pf-desc">Silica aerogel manufacturer. Thermal Blade® insulation between EV battery cells stops thermal runaway. Singapore HQ. Investors include Owens Corning (NYSE: OC). Hyundai contract signed Jan 2026.</div>
+        <div class="pf-mvl">Introductions to Taiwan battery cell makers, EV supply chain partners, and automotive Tier-1 suppliers.</div>
+      </div>
+
+      <!-- CORETIGO -->
+      <div class="pf-card">
+        <div class="pf-logo-row">
+          <img src="https://logo.clearbit.com/coretigo.com" class="pf-logo" alt="CoreTigo">
+          <span class="pf-badge funded">Qualcomm · Verizon</span>
+        </div>
+        <div class="pf-name">CoreTigo</div>
+        <div class="pf-desc">IO-Link Wireless for factory floors — cable-grade reliability for motion-critical industrial automation. Israel-based. Backed by Qualcomm Ventures, Verizon Ventures, Amazon Industrial Innovation Fund.</div>
+        <div class="pf-mvl">Introductions to Taiwan machine-tool cluster (Taichung) and industrial supplier ecosystem for IO-Link Wireless adoption.</div>
+      </div>
+
+      <!-- VERACITY PROTOCOL -->
+      <div class="pf-card">
+        <div class="pf-logo-row">
+          <img src="https://logo.clearbit.com/veracityprotocol.org" class="pf-logo" alt="Veracity Protocol">
+          <span class="pf-badge portfolio">Scaling · EU DPP</span>
+        </div>
+        <div class="pf-name">Veracity Protocol</div>
+        <div class="pf-desc">Vision AI that fingerprints the microstructure of any physical object. Replaces RFID, NFC, holograms for anti-counterfeiting. Core tech for EU Digital Product Passport compliance.</div>
+        <div class="pf-mvl">Introductions to Taiwan manufacturing suppliers for embedding object-fingerprinting into production lines.</div>
+      </div>
+
+      <!-- WOOJER -->
+      <div class="pf-card">
+        <div class="pf-logo-row">
+          <img src="https://logo.clearbit.com/woojer.com" class="pf-logo" alt="Woojer">
+          <span class="pf-badge portfolio">Retail · Costco/BestBuy</span>
+        </div>
+        <div class="pf-name">Woojer</div>
+        <div class="pf-desc">High-fidelity haptic wearables. Vest 4 and Strap 4 turn audio into full-body vibration for VR, gaming, music, film, wellness. Distributed at Costco, Best Buy, Dell, Walmart.</div>
+        <div class="pf-mvl">Introductions to Taiwan suppliers — haptic transducers, textile integration, consumer electronics manufacturing.</div>
+      </div>
+
+      <!-- ASTRUS AI -->
+      <div class="pf-card">
+        <div class="pf-logo-row">
+          <img src="https://logo.clearbit.com/astrus.ai" class="pf-logo" alt="Astrus AI">
+          <span class="pf-badge funded">Seed · Khosla</span>
+        </div>
+        <div class="pf-name">Astrus AI</div>
+        <div class="pf-desc">AI foundation model for analog chip layout. AlphaGo-style reinforcement learning applied to semiconductor design. First focus: 224 Gbps SERDES. Toronto/Waterloo. $8M seed led by Khosla Ventures.</div>
+        <div class="pf-mvl">Introductions to Taiwan semiconductor VCs — MediaTek, UMC, ST Micro Taiwan.</div>
+      </div>
+
+      <!-- INFOCUS THERAPEUTICS -->
+      <div class="pf-card">
+        <div class="pf-logo-row">
+          <img src="https://logo.clearbit.com/infocustx.com" class="pf-logo" alt="InFocus Therapeutics">
+          <span class="pf-badge portfolio">Portfolio · Invested</span>
+        </div>
+        <div class="pf-name">InFocus Therapeutics</div>
+        <div class="pf-desc">AI-driven RNA-targeted small molecule drug discovery. Boston HQ, Paris subsidiary, Taipei presence. Lead program in SMA. 40% candidate success rate vs 1% industry baseline.</div>
+        <div class="pf-mvl">Brought to Taiwan via TTA and Mosaic CellTech accelerator. MVL invested. Public proof on InFocus's own site and Digitimes.</div>
+      </div>
+
+      <!-- CRAFTON BIO -->
+      <div class="pf-card">
+        <div class="pf-logo-row">
+          <img src="https://logo.clearbit.com/craftonbio.com" class="pf-logo" alt="Crafton Biotechnology">
+          <span class="pf-badge funded">NEDO · Deep Tech</span>
+        </div>
+        <div class="pf-name">Crafton Biotechnology</div>
+        <div class="pf-desc">Japanese mRNA drug developer. PureCap® Cap2 analog enables higher, repeated dosing. World-first chemical synthesis mRNA. Nagoya University spinoff. Backed by Japan's NEDO Deep Tech program.</div>
+        <div class="pf-mvl">Introductions to Taiwan academic research hospitals, clinical trial sites, and vaccine manufacturing partners.</div>
+      </div>
+
+      <!-- RESVITA BIO -->
+      <div class="pf-card">
+        <div class="pf-logo-row">
+          <img src="https://logo.clearbit.com/resvitabio.com" class="pf-logo" alt="ResVita Bio">
+          <span class="pf-badge funded">FDA Cleared · SBIR</span>
+        </div>
+        <div class="pf-name">ResVita Bio</div>
+        <div class="pf-desc">Engineered skin probiotics. Topical genetically-engineered bacteria continuously produce therapeutic proteins on the skin. Lead indication: Netherton Syndrome. FDA INTERACT cleared. Clinical trials 2026.</div>
+        <div class="pf-mvl">Taiwan investor introductions and manufacturing scout for Series A and CMO partners.</div>
+      </div>
+
+    </div>
+
+    <!-- INBOUND CLOSING CTA STRIP -->
+    <div class="reveal" style="margin-top:3rem;padding:2.5rem 3rem;background:var(--bg-dark);color:white;border-radius:16px;text-align:center;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:0.75rem;">The Flywheel</div>
+      <h3 style="font-family:'DM Serif Display',serif;font-size:clamp(1.3rem,2.3vw,1.8rem);line-height:1.25;max-width:720px;margin:0 auto 1rem;">Taiwan wins when it's the first stop for foreign deep-tech, not the last.</h3>
+      <p style="font-size:0.9rem;line-height:1.7;opacity:0.8;max-width:600px;margin:0 auto;">Every foreign startup we land in Taiwan creates investor intros, supply chain demand, and ecosystem signal. The Taiwanese founders we train for global markets benefit from the same network. One flywheel, two turbines.</p>
     </div>
 
     <!-- THE BIGGER PICTURE -->
@@ -914,7 +1137,7 @@ nav.scrolled { border-bottom-color:var(--border); }
       <div class="section-label">The Bigger Picture</div>
       <h2 class="section-heading">Why this program exists.</h2>
       <div class="infographic-frame" style="margin-top:1.5rem;">
-        <img src="why%20this%20program%20exists.png" alt="Why This Program Exists — systemic failure patterns in Taiwan's startup ecosystem">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/why%20this%20program%20exists.png" alt="Why This Program Exists — systemic failure patterns in Taiwan's startup ecosystem">
       </div>
       <p style="font-size:0.68rem;color:var(--text-muted);text-align:center;margin-top:0.75rem;font-style:italic;">The systemic patterns behind why strong Taiwanese technology struggles in global markets.</p>
     </div>
@@ -929,17 +1152,18 @@ nav.scrolled { border-bottom-color:var(--border); }
       <div class="logo-strip-label">Programs & Partners</div>
       <div class="logo-strip">
       <img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20130%2040'%3E%3Ccircle%20cx='20'%20cy='20'%20r='14'%20fill='none'%20stroke='%230054A6'%20stroke-width='1.5'/%3E%3Cellipse%20cx='20'%20cy='20'%20rx='8'%20ry='14'%20fill='none'%20stroke='%230054A6'%20stroke-width='0.8'/%3E%3Cline%20x1='6'%20y1='14'%20x2='34'%20y2='14'%20stroke='%230054A6'%20stroke-width='0.6'/%3E%3Cline%20x1='6'%20y1='20'%20x2='34'%20y2='20'%20stroke='%230054A6'%20stroke-width='0.6'/%3E%3Cline%20x1='6'%20y1='26'%20x2='34'%20y2='26'%20stroke='%230054A6'%20stroke-width='0.6'/%3E%3Ctext%20x='42'%20y='26'%20font-family='Helvetica%20Neue,Helvetica,Arial,sans-serif'%20font-weight='700'%20font-size='20'%20letter-spacing='2'%20fill='%230054A6'%3EAPEC%3C/text%3E%3C/svg%3E" alt="APEC" class="corp-logo" style="height:28px;">
-        <img src="startup-weekend-vector-logo.png" alt="Startup Weekend" class="corp-logo" style="height:28px;object-fit:contain;">
-        <img src="TTA.jpg" alt="TTA" class="corp-logo" style="height:30px;object-fit:contain;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/startup-weekend-vector-logo.png" alt="Startup Weekend" class="corp-logo" style="height:28px;object-fit:contain;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/TTA.jpg" alt="TTA" class="corp-logo" style="height:30px;object-fit:contain;">
         <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M12%200C5.36%200%200%205.36%200%2012S5.36%2024%2012%2024%2024%2018.64%2024%2012%2018.64%200%2012%200M12%201.41C13.2%201.41%2014.36%201.63%2015.43%202L12.13%209.13C12.09%209.17%2012.09%209.26%2012%209.26S11.91%209.17%2011.87%209.13L8.57%202C9.64%201.63%2010.8%201.42%2012%201.42M6.9%202.74L10.72%2010.97C10.8%2011.14%2010.89%2011.19%2011%2011.19H13C13.12%2011.19%2013.2%2011.14%2013.29%2010.97L17.06%202.74C18.64%203.64%2020%204.93%2020.96%206.47L15.6%2016.84C15.56%2016.93%2015.5%2016.97%2015.47%2016.97C15.39%2016.97%2015.39%2016.89%2015.34%2016.84L13.29%2012.3C13.2%2012.13%2013.12%2012.09%2013%2012.09H11C10.89%2012.09%2010.8%2012.13%2010.71%2012.3L8.66%2016.84C8.61%2016.89%208.62%2016.97%208.53%2016.97C8.44%2016.97%208.44%2016.89%208.4%2016.84L3%206.47C3.94%204.93%205.32%203.64%206.9%202.74M2.06%208.53L8.23%2020.53C8.31%2020.7%208.4%2020.83%208.62%2020.83C8.83%2020.83%208.91%2020.7%209%2020.53L11.87%2014.14C11.91%2014.06%2011.96%2014%2012%2014C12.09%2014%2012.09%2014.1%2012.13%2014.14L15.04%2020.53C15.13%2020.7%2015.21%2020.83%2015.43%2020.83C15.64%2020.83%2015.73%2020.7%2015.81%2020.53L22%208.53C22.37%209.6%2022.59%2010.76%2022.59%2012C22.54%2017.79%2017.79%2022.59%2012%2022.59C6.21%2022.59%201.46%2017.79%201.46%2012C1.46%2010.8%201.67%209.65%202.06%208.53Z'%20fill='%23888888'/></svg>" alt="Volkswagen" class="corp-logo" style="height:30px;">
         <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M19.848%2C7.848c-0.992%2C0-1.902%2C0.348-2.616%2C0.928c-0.714-0.58-1.624-0.928-2.616-0.928%20c-0.992%2C0-1.902%2C0.348-2.616%2C0.928c-0.714-0.58-1.624-0.928-2.616-0.928c-0.992%2C0-1.902%2C0.348-2.616%2C0.928%20c-0.714-0.58-1.624-0.928-2.616-0.928C1.859%2C7.848%2C0%2C9.707%2C0%2C12s1.859%2C4.152%2C4.152%2C4.152c0.992%2C0%2C1.902-0.348%2C2.616-0.928%20c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928c0.992%2C0%2C1.902-0.348%2C2.616-0.928c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928%20c0.992%2C0%2C1.902-0.348%2C2.616-0.928c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928C22.141%2C16.152%2C24%2C14.293%2C24%2C12S22.141%2C7.848%2C19.848%2C7.848z%20M17.232%2C13.866c-0.376-0.526-0.598-1.17-0.598-1.866c0-0.696%2C0.222-1.34%2C0.598-1.866c0.376%2C0.526%2C0.598%2C1.17%2C0.598%2C1.866%20C17.83%2C12.696%2C17.608%2C13.34%2C17.232%2C13.866z%20M12%2C13.866c-0.376-0.526-0.598-1.17-0.598-1.866c0-0.696%2C0.222-1.34%2C0.598-1.866%20c0.376%2C0.526%2C0.598%2C1.17%2C0.598%2C1.866C12.598%2C12.696%2C12.376%2C13.34%2C12%2C13.866z%20M6.768%2C13.866C6.392%2C13.34%2C6.17%2C12.696%2C6.17%2C12%20c0-0.696%2C0.222-1.34%2C0.598-1.866C7.144%2C10.66%2C7.366%2C11.304%2C7.366%2C12C7.366%2C12.696%2C7.144%2C13.34%2C6.768%2C13.866z%20M0.938%2C12%20c0-1.775%2C1.439-3.214%2C3.214-3.214c0.736%2C0%2C1.414%2C0.248%2C1.956%2C0.665C5.56%2C10.154%2C5.232%2C11.039%2C5.232%2C12%20c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665C2.377%2C15.214%2C0.938%2C13.775%2C0.938%2C12z%20M7.428%2C14.549%20C7.976%2C13.846%2C8.304%2C12.961%2C8.304%2C12c0-0.961-0.328-1.846-0.876-2.549c0.542-0.416%2C1.22-0.665%2C1.956-0.665%20c0.736%2C0%2C1.414%2C0.248%2C1.956%2C0.665c-0.549%2C0.704-0.876%2C1.588-0.876%2C2.549c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549%20c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665C8.648%2C15.214%2C7.97%2C14.966%2C7.428%2C14.549z%20M12.66%2C14.549c0.549-0.704%2C0.876-1.588%2C0.876-2.549%20c0-0.961-0.328-1.846-0.876-2.55c0.542-0.416%2C1.22-0.665%2C1.956-0.665s1.414%2C0.248%2C1.956%2C0.665%20c-0.549%2C0.704-0.876%2C1.588-0.876%2C2.549c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665%20C13.88%2C15.214%2C13.202%2C14.966%2C12.66%2C14.549z%20M19.848%2C15.214c-0.736%2C0-1.414-0.248-1.956-0.665c0.548-0.704%2C0.876-1.588%2C0.876-2.549%20c0-0.961-0.328-1.846-0.876-2.549c0.542-0.416%2C1.22-0.665%2C1.956-0.665c1.775%2C0%2C3.214%2C1.439%2C3.214%2C3.214%20S21.623%2C15.214%2C19.848%2C15.214z'%20fill='%23888888'/></svg>" alt="Audi" class="corp-logo" style="height:32px;">
-        <img src="continental.png" alt="Continental" class="corp-logo" style="height:28px;object-fit:contain;">
-        <img src="ITRI.png" alt="ITRI" class="corp-logo" style="height:28px;object-fit:contain;">
-        <img src="Liteon.png" alt="LITEON" class="corp-logo" style="height:28px;object-fit:contain;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/continental.png" alt="Continental" class="corp-logo" style="height:28px;object-fit:contain;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/ITRI.png" alt="ITRI" class="corp-logo" style="height:28px;object-fit:contain;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Liteon.png" alt="LITEON" class="corp-logo" style="height:28px;object-fit:contain;">
       </div>
     </div>
   </div>
 </div>
+
 
 <!-- ==================== MENTORS ==================== -->
 <div class="page" id="page-mentors">
@@ -952,12 +1176,12 @@ nav.scrolled { border-bottom-color:var(--border); }
         <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M19.848%2C7.848c-0.992%2C0-1.902%2C0.348-2.616%2C0.928c-0.714-0.58-1.624-0.928-2.616-0.928%20c-0.992%2C0-1.902%2C0.348-2.616%2C0.928c-0.714-0.58-1.624-0.928-2.616-0.928c-0.992%2C0-1.902%2C0.348-2.616%2C0.928%20c-0.714-0.58-1.624-0.928-2.616-0.928C1.859%2C7.848%2C0%2C9.707%2C0%2C12s1.859%2C4.152%2C4.152%2C4.152c0.992%2C0%2C1.902-0.348%2C2.616-0.928%20c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928c0.992%2C0%2C1.902-0.348%2C2.616-0.928c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928%20c0.992%2C0%2C1.902-0.348%2C2.616-0.928c0.714%2C0.58%2C1.624%2C0.928%2C2.616%2C0.928C22.141%2C16.152%2C24%2C14.293%2C24%2C12S22.141%2C7.848%2C19.848%2C7.848z%20M17.232%2C13.866c-0.376-0.526-0.598-1.17-0.598-1.866c0-0.696%2C0.222-1.34%2C0.598-1.866c0.376%2C0.526%2C0.598%2C1.17%2C0.598%2C1.866%20C17.83%2C12.696%2C17.608%2C13.34%2C17.232%2C13.866z%20M12%2C13.866c-0.376-0.526-0.598-1.17-0.598-1.866c0-0.696%2C0.222-1.34%2C0.598-1.866%20c0.376%2C0.526%2C0.598%2C1.17%2C0.598%2C1.866C12.598%2C12.696%2C12.376%2C13.34%2C12%2C13.866z%20M6.768%2C13.866C6.392%2C13.34%2C6.17%2C12.696%2C6.17%2C12%20c0-0.696%2C0.222-1.34%2C0.598-1.866C7.144%2C10.66%2C7.366%2C11.304%2C7.366%2C12C7.366%2C12.696%2C7.144%2C13.34%2C6.768%2C13.866z%20M0.938%2C12%20c0-1.775%2C1.439-3.214%2C3.214-3.214c0.736%2C0%2C1.414%2C0.248%2C1.956%2C0.665C5.56%2C10.154%2C5.232%2C11.039%2C5.232%2C12%20c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665C2.377%2C15.214%2C0.938%2C13.775%2C0.938%2C12z%20M7.428%2C14.549%20C7.976%2C13.846%2C8.304%2C12.961%2C8.304%2C12c0-0.961-0.328-1.846-0.876-2.549c0.542-0.416%2C1.22-0.665%2C1.956-0.665%20c0.736%2C0%2C1.414%2C0.248%2C1.956%2C0.665c-0.549%2C0.704-0.876%2C1.588-0.876%2C2.549c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549%20c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665C8.648%2C15.214%2C7.97%2C14.966%2C7.428%2C14.549z%20M12.66%2C14.549c0.549-0.704%2C0.876-1.588%2C0.876-2.549%20c0-0.961-0.328-1.846-0.876-2.55c0.542-0.416%2C1.22-0.665%2C1.956-0.665s1.414%2C0.248%2C1.956%2C0.665%20c-0.549%2C0.704-0.876%2C1.588-0.876%2C2.549c0%2C0.961%2C0.328%2C1.846%2C0.876%2C2.549c-0.542%2C0.416-1.22%2C0.665-1.956%2C0.665%20C13.88%2C15.214%2C13.202%2C14.966%2C12.66%2C14.549z%20M19.848%2C15.214c-0.736%2C0-1.414-0.248-1.956-0.665c0.548-0.704%2C0.876-1.588%2C0.876-2.549%20c0-0.961-0.328-1.846-0.876-2.549c0.542-0.416%2C1.22-0.665%2C1.956-0.665c1.775%2C0%2C3.214%2C1.439%2C3.214%2C3.214%20S21.623%2C15.214%2C19.848%2C15.214z'%20fill='%23888888'/></svg>" alt="Audi" class="corp-logo" style="height:34px;">
         <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M12%200C5.36%200%200%205.36%200%2012S5.36%2024%2012%2024%2024%2018.64%2024%2012%2018.64%200%2012%200M12%201.41C13.2%201.41%2014.36%201.63%2015.43%202L12.13%209.13C12.09%209.17%2012.09%209.26%2012%209.26S11.91%209.17%2011.87%209.13L8.57%202C9.64%201.63%2010.8%201.42%2012%201.42M6.9%202.74L10.72%2010.97C10.8%2011.14%2010.89%2011.19%2011%2011.19H13C13.12%2011.19%2013.2%2011.14%2013.29%2010.97L17.06%202.74C18.64%203.64%2020%204.93%2020.96%206.47L15.6%2016.84C15.56%2016.93%2015.5%2016.97%2015.47%2016.97C15.39%2016.97%2015.39%2016.89%2015.34%2016.84L13.29%2012.3C13.2%2012.13%2013.12%2012.09%2013%2012.09H11C10.89%2012.09%2010.8%2012.13%2010.71%2012.3L8.66%2016.84C8.61%2016.89%208.62%2016.97%208.53%2016.97C8.44%2016.97%208.44%2016.89%208.4%2016.84L3%206.47C3.94%204.93%205.32%203.64%206.9%202.74M2.06%208.53L8.23%2020.53C8.31%2020.7%208.4%2020.83%208.62%2020.83C8.83%2020.83%208.91%2020.7%209%2020.53L11.87%2014.14C11.91%2014.06%2011.96%2014%2012%2014C12.09%2014%2012.09%2014.1%2012.13%2014.14L15.04%2020.53C15.13%2020.7%2015.21%2020.83%2015.43%2020.83C15.64%2020.83%2015.73%2020.7%2015.81%2020.53L22%208.53C22.37%209.6%2022.59%2010.76%2022.59%2012C22.54%2017.79%2017.79%2022.59%2012%2022.59C6.21%2022.59%201.46%2017.79%201.46%2012C1.46%2010.8%201.67%209.65%202.06%208.53Z'%20fill='%23888888'/></svg>" alt="Volkswagen" class="corp-logo" style="height:32px;">
         <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M17.963%2014.6V9.324h1.222v4.204h2.14v1.07h-3.362zm-9.784-3.288l2.98-2.292c.281.228.56.458.841.687l-2.827%202.14.611.535%202.827-2.216c.281.228.56.458.841.688a295.83%20295.83%200%200%201-2.827%202.216l.61.536%202.83-2.295-.001-1.986h1.223v4.204h2.216v1.07h-3.362v-1.987c-.995.763-1.987%201.529-2.981%202.292l-2.981-2.292c-.144.729-.653%201.36-1.312%201.694-.285.147-.597.24-.915.276-.183.022-.367.017-.551.017H3.516V9.325H5.69a2.544%202.544%200%200%201%201.563.557c.454.36.778.872.927%201.43m-3.516-.917v3.21l.953-.001a1.377%201.377%200%200%200%201.036-.523%201.74%201.74%200%200%200%20.182-1.889%201.494%201.494%200%200%200-.976-.766c-.166-.04-.338-.03-.507-.032h-.688zM11.82%200h.337a11.94%2011.94%200%200%201%205.405%201.373%2012.101%2012.101%200%200%201%204.126%203.557A11.93%2011.93%200%200%201%2024%2011.82v.36a11.963%2011.963%200%200%201-3.236%208.033A11.967%2011.967%200%200%201%2012.182%2024h-.361a11.993%2011.993%200%200%201-4.145-.806%2012.04%2012.04%200%200%201-4.274-2.836A12.057%2012.057%200%200%201%20.576%2015.67%2012.006%2012.006%200%200%201%200%2012.181v-.361a11.924%2011.924%200%200%201%201.992-6.396%2012.211%2012.211%200%200%201%204.71-4.172A11.875%2011.875%200%200%201%2011.82%200m-.153%201.23a10.724%2010.724%200%200%200-6.43%202.375%2010.78%2010.78%200%200%200-3.319%204.573%2010.858%2010.858%200%200%200%20.193%208.12%2010.788%2010.788%200%200%200%203.546%204.421%2010.698%2010.698%200%200%200%204.786%201.946c1.456.209%202.955.124%204.376-.26a10.756%2010.756%200%200%200%205.075-3.062%2010.742%2010.742%200%200%200%202.686-5.28%2010.915%2010.915%200%200%200-.122-4.682%2010.77%2010.77%200%200%200-7.098-7.626%2010.78%2010.78%200%200%200-3.693-.525z'%20fill='%23888888'/></svg>" alt="Dell" class="corp-logo" style="height:26px;">
-        <img src="EMC-Logo.png" alt="EMC" class="corp-logo" style="height:30px;object-fit:contain;">
-        <img src="continental.png" alt="Continental" class="corp-logo" style="height:28px;object-fit:contain;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/EMC-Logo.png" alt="EMC" class="corp-logo" style="height:30px;object-fit:contain;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/continental.png" alt="Continental" class="corp-logo" style="height:28px;object-fit:contain;">
         <img src="data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'><path%20d='M12%200C5.373%200%200%205.373%200%2012s5.373%2012%2012%2012%2012-5.373%2012-12C24.002%205.375%2018.632.002%2012.007%200H12zm7.327%2018.065s-.581-2.627-1.528-4.197c-.514-.857-1.308-1.553-2.368-1.532-.745%200-1.399.423-2.2%201.553-.469.77-.882%201.573-1.235%202.403%200%200-.29-.675-.63-1.343a8.038%208.038%200%200%200-.605-1.049c-.804-1.13-1.455-1.539-2.2-1.553-1.049-.021-1.854.675-2.364%201.528-.948%201.574-1.528%204.197-1.528%204.197h-.864l4.606-15.12%203.56%2011.804.024.021.024-.021%203.56-11.804%204.61%2015.113h-.862z'%20fill='%23888888'/></svg>" alt="Motorola" class="corp-logo" style="height:30px;">
-        <img src="AWS.png" alt="AWS" class="corp-logo" style="height:30px;object-fit:contain;">
-        <img src="IBM.png" alt="IBM" class="corp-logo" style="height:30px;object-fit:contain;">
-        <img src="daimler.png" alt="Daimler" class="corp-logo" style="height:28px;object-fit:contain;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/AWS.png" alt="AWS" class="corp-logo" style="height:30px;object-fit:contain;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/IBM.png" alt="IBM" class="corp-logo" style="height:30px;object-fit:contain;">
+        <img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/daimler.png" alt="Daimler" class="corp-logo" style="height:28px;object-fit:contain;">
       </div>
     </div>
     <div class="reveal">
@@ -966,16 +1190,16 @@ nav.scrolled { border-bottom-color:var(--border); }
       <p class="section-sub">Our mentors sit on the other side of the table. They know exactly what kills a deal because they've walked away from hundreds of them.</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1.25rem;margin-top:3rem;" class="reveal mentor-grid">
-      <div class="mentor-card"><div class="mentor-photo"><img src="Christian.png" alt="Christian Walter" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Christian Walter</div><div class="mentor-role">CEO, RegionRise<br>Ex-Google Europe</div></div>
-      <div class="mentor-card"><div class="mentor-photo"><img src="Wilson.png" alt="Wilson Khoo" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Wilson Khoo</div><div class="mentor-role">Director, co-pace APAC<br>Continental AG</div></div>
-      <div class="mentor-card"><div class="mentor-photo"><img src="Pascal.png" alt="Pascal Viaud" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Pascal Viaud</div><div class="mentor-role">CEO, UBIK ltd.<br>La French Tech Taiwan</div></div>
-      <div class="mentor-card"><div class="mentor-photo"><img src="Chander%20Kant.png" alt="Chander Kant" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Chander Kant</div><div class="mentor-role">CEO, K Ventures<br>Former CEO, Zmanda</div></div>
-      <div class="mentor-card"><div class="mentor-photo"><img src="Mark%20Birch.png" alt="Mark Birch" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Mark Birch</div><div class="mentor-role">Founder, TribeROI<br>Ex-AWS Global Advocate</div></div>
-      <div class="mentor-card"><div class="mentor-photo"><img src="Ashley.png" alt="Ashley Hsueh" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Ashley Hsueh</div><div class="mentor-role">Management Consultant<br>Bain & Company</div></div>
-      <div class="mentor-card"><div class="mentor-photo"><img src="Volker%20Kaese_0.jpg" alt="Dr. Volker Kaese" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Dr. Volker Kaese</div><div class="mentor-role">CEO, Ingenev Mobility<br>Ex-Audi/VW Innovation</div></div>
-      <div class="mentor-card"><div class="mentor-photo"><img src="deborah.jpg" alt="Deborah Magid" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Deborah Magid</div><div class="mentor-role">MD, NextStar Ventures<br>Ex-IBM Ventures</div></div>
-      <div class="mentor-card"><div class="mentor-photo"><img src="Shafeen.png" alt="Shafeen Charania" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Shafeen Charania</div><div class="mentor-role">COO, fluency<br>Ex-DXC Enterprise IT</div></div>
-      <div class="mentor-card"><div class="mentor-photo"><img src="Todd%20Lin_0.png" alt="Todd Lin" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Todd Lin</div><div class="mentor-role">Semiconductor & M&A<br>Ex-GE, Acer, Egis Tech</div></div>
+      <div class="mentor-card"><div class="mentor-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Christian.png" alt="Christian Walter" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Christian Walter</div><div class="mentor-role">CEO, RegionRise<br>Ex-Google Europe</div></div>
+      <div class="mentor-card"><div class="mentor-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Wilson.png" alt="Wilson Khoo" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Wilson Khoo</div><div class="mentor-role">Director, co-pace APAC<br>Continental AG</div></div>
+      <div class="mentor-card"><div class="mentor-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Pascal.png" alt="Pascal Viaud" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Pascal Viaud</div><div class="mentor-role">CEO, UBIK ltd.<br>La French Tech Taiwan</div></div>
+      <div class="mentor-card"><div class="mentor-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Chander%20Kant.png" alt="Chander Kant" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Chander Kant</div><div class="mentor-role">CEO, K Ventures<br>Former CEO, Zmanda</div></div>
+      <div class="mentor-card"><div class="mentor-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Mark%20Birch.png" alt="Mark Birch" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Mark Birch</div><div class="mentor-role">Founder, TribeROI<br>Ex-AWS Global Advocate</div></div>
+      <div class="mentor-card"><div class="mentor-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Ashley.png" alt="Ashley Hsueh" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Ashley Hsueh</div><div class="mentor-role">Management Consultant<br>Bain & Company</div></div>
+      <div class="mentor-card"><div class="mentor-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Volker%20Kaese_0.jpg" alt="Dr. Volker Kaese" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Dr. Volker Kaese</div><div class="mentor-role">CEO, Ingenev Mobility<br>Ex-Audi/VW Innovation</div></div>
+      <div class="mentor-card"><div class="mentor-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/deborah.jpg" alt="Deborah Magid" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Deborah Magid</div><div class="mentor-role">MD, NextStar Ventures<br>Ex-IBM Ventures</div></div>
+      <div class="mentor-card"><div class="mentor-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Shafeen.png" alt="Shafeen Charania" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Shafeen Charania</div><div class="mentor-role">COO, fluency<br>Ex-DXC Enterprise IT</div></div>
+      <div class="mentor-card"><div class="mentor-photo"><img src="https://raw.githubusercontent.com/sungmbh/Training_2026/main/Todd%20Lin_0.png" alt="Todd Lin" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div class="mentor-name">Todd Lin</div><div class="mentor-role">Semiconductor & M&A<br>Ex-GE, Acer, Egis Tech</div></div>
     </div>
     
     
@@ -1050,16 +1274,13 @@ window.addEventListener('scroll', () => {
 document.addEventListener('DOMContentLoaded', initReveals);
 </script>
 
-<!-- ── APPLY MODAL ── -->
 <div id="sg-overlay" role="dialog" aria-modal="true" aria-labelledby="sg-modal-heading">
   <div id="sg-modal">
     <button id="sg-close" onclick="closeApplyModal()" aria-label="Close">✕</button>
-
     <div id="sg-form-wrap">
       <p class="sg-eyebrow">Join the next cohort</p>
       <h2 class="sg-title" id="sg-modal-heading">Apply to SELL GLOBAL</h2>
       <p class="sg-sub">Applications reviewed on a rolling basis. Limited to 30 companies per cohort.</p>
-
       <div class="sg-row">
         <div class="sg-field">
           <label for="sg-name">Your name *</label>
@@ -1129,7 +1350,6 @@ document.addEventListener('DOMContentLoaded', initReveals);
       <div id="sg-error"></div>
       <p class="sg-privacy">Your information is kept confidential and used only for cohort review.</p>
     </div>
-
     <div id="sg-success">
       <div class="sg-check">✓</div>
       <h3>Application received.</h3>
@@ -1140,7 +1360,7 @@ document.addEventListener('DOMContentLoaded', initReveals);
 
 <script>
 // ── Replace with your deployed Apps Script URL ──
-const SG_URL = 'https://script.google.com/macros/s/AKfycbwJS_K25ntALUsasgW87pd4_-TKCIpqZHXr-FIgj_zw2_16X0p7p6QPAoHh8i8mO7YKzA/exec';
+const SG_URL = 'YOUR_APPS_SCRIPT_URL';
 
 function openApplyModal() {
   document.getElementById('sg-overlay').classList.add('active');
@@ -1149,14 +1369,12 @@ function openApplyModal() {
 function closeApplyModal() {
   document.getElementById('sg-overlay').classList.remove('active');
   document.body.style.overflow = '';
-  // Reset back to form state
   document.getElementById('sg-form-wrap').style.display = 'block';
   document.getElementById('sg-success').style.display = 'none';
   document.querySelectorAll('#sg-modal input, #sg-modal textarea, #sg-modal select').forEach(el => {
     if (el.tagName === 'SELECT') el.selectedIndex = 0;
     else el.value = '';
   });
-  // Reset submit button
   const btn = document.getElementById('sg-submit');
   if (btn) { btn.disabled = false; document.getElementById('sg-btn-text').textContent = 'Submit Application →'; }
 }
